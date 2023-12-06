@@ -4,4 +4,3 @@ export const AnswerFilters = [
   { name: 'Most Recent', value: 'recent' },
   { name: 'Oldest', value: 'old' },
 ];
-

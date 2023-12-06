@@ -10,7 +10,8 @@
     "lint:check": "eslint --ext .js,.ts,.tsx",
     "prettier:check": "prettier --ignore-path .gitignore --write \"src/**/*.+(js|ts|tsx|json)\"",
     "prettier:fix": "prettier --write \"src/**/*.+(js|ts|tsx|json)\"",
-    "lint-prettier-fix": " pnpm prettier:fix  && pnpm lint",
+    "lint-prettier-fix": " pnpm prettier:fix   && pnpm lint:fix && pnpm lint",
+    "lint:fix": "eslint . --fix",
     "lint-prettier-check": "pnpm lint:check && pnpm prettier:check",
     "lint-prettier": "pnpm lint-prettier-fix && pnpm lint-prettier-check"
   },

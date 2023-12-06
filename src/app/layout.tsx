@@ -4,7 +4,7 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import React from 'react';
 
 import './globals.css';
-import '../styles/theme.css'
+import '../styles/theme.css';
 
 import Footer from '@/components/view/shared/Footer';
 import Navbar from '@/components/view/shared/navbar/Navbar';

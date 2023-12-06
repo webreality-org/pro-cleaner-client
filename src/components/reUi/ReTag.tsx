@@ -6,7 +6,7 @@ interface Props {
   showCount?: boolean;
 }
 
-const ReTag = ({name, totalQuestions, showCount }: Props) => {
+const ReTag = ({ name, totalQuestions, showCount }: Props) => {
   return (
     <>
       <Badge className="subtle-medium background-light800_dark300 text-light400_light500 rounded-md border-none px-4 py-2 uppercase">

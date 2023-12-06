@@ -2,8 +2,6 @@ import { ReactNode } from 'react';
 
 import { BADGE_CRITERIA } from '@/constants';
 
-
-
 export interface SearchParamsProps {
   searchParams: { [key: string]: string | undefined };
 }
