@@ -14,11 +14,11 @@ const SheetTrigger = SheetPrimitive.Trigger;
 const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = ({
-  // @ts-expect-error
+  // @ts-expect-error: This error is expected because the className prop is intentionally not used in this component.
   className,
   ...props
 }: SheetPrimitive.DialogPortalProps) => (
-  // @ts-expect-error
+  // @ts-expect-error: This error is expected because the className prop is intentionally not used in this component.
   <SheetPrimitive.Portal className={cn(className)} {...props} />
 );
 SheetPortal.displayName = SheetPrimitive.Portal.displayName;
