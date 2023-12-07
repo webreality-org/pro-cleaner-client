@@ -37,7 +37,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.variable} ${spaceGrotesk.variable} `}>
         <Providers>
           <div>
-            <Navba />
+            {/* navbar */}
+            <Navbar />
             {children}
             <Footer />
           </div>
