@@ -44,3 +44,4 @@ export default function RootLayout({ children }: TChildrenProps) {
     </html>
   );
 }
+// husky and commit lint test
