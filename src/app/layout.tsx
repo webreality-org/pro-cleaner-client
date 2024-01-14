@@ -44,7 +44,3 @@ export default function RootLayout({ children }: TChildrenProps) {
     </html>
   );
 }
-
-// husky and commit lint test 1
-
-// Path: src/components/view/shared/Footer.tsx
