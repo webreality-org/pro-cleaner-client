@@ -45,3 +45,4 @@ export default function RootLayout({ children }: TChildrenProps) {
   );
 }
 // husky test folder
+// chmod updated
