@@ -44,5 +44,4 @@ export default function RootLayout({ children }: TChildrenProps) {
     </html>
   );
 }
-// husky test folder reset test before revert 1
-// husky test folder reset test before revert 2
+// husky test folder
