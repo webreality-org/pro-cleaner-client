@@ -6,16 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint:check": "eslint --ignore-path .eslintignore src --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives",
     "lint:fix": "eslint --ignore-path .eslintignore src --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives --fix",
-    "prettier:check": "prettier --ignore-path .gitignore --check 'src/**/*.{js,jsx,ts,tsx,css,html}'",
+    "lint:check": "eslint --ignore-path .eslintignore src --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives",
     "prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,html}'",
-    "lint-prettier-fix": " pnpm  prettier:fix  && pnpm  lint",
-    "lint-prettier-check": "pnpm  lint:check && pnpm  prettier:check",
-    "lint-prettier": "pnpm  lint-prettier-fix && pnpm  lint-prettier-check"
+    "prettier:check": "prettier --ignore-path .gitignore --check 'src/**/*.{js,jsx,ts,tsx,css,html}'"
+
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,js}": [
+    "src/**/*.{js,jsx,ts,tsx,css,html}": [
       "pnpm  lint:fix",
       "pnpm  prettier:fix",
       "pnpm  lint:check",
