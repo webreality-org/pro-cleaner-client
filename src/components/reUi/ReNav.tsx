@@ -1,8 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import Theme from '../view/shared/navbar/Theme';
+import * as React from 'react';
 
 import './ReNav.css';
 import ReNavMobile from './ReNavMobile';
@@ -14,7 +13,9 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import { cn } from '@/lib/utils';
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -52,6 +53,28 @@ const components: { title: string; href: string; description: string }[] = [
       'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
   },
 ];
+const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
+  ({ className, title, children, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <a
+            ref={ref}
+            className={cn(
+              'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+              className
+            )}
+            {...props}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+          </a>
+        </NavigationMenuLink>
+      </li>
+    );
+  }
+);
+ListItem.displayName = 'ListItem';
 
 function ReNav() {
   return (
@@ -66,85 +89,65 @@ function ReNav() {
               <Image className="" src="/assets/images/logo.svg" height={150} width={150} alt="" />
             </Link>
           </div>
-          <div className="mt-2 flex w-[100%] items-center justify-between bg-slate-900 px-2 py-4">
-            <ul className="menu menu-horizontal hidden h-full items-center space-x-1 px-1 text-sm font-bold uppercase text-white lg:flex lg:text-sm xl:space-x-5 xl:text-base">
-              <NavigationMenu
-                delayDuration={50}
-                orientation="vertical"
-                className="NavigationMenuViewport"
-              >
-                <NavigationMenuList className="gap-x-4">
-                  <NavigationMenuItem>
-                    <Link href="/" legacyBehavior passHref>
-                      <NavigationMenuLink className="">Home</NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
+          <NavigationMenu>
+            <NavigationMenuList>
+              {/* item 1 */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <li className="row-span-3">
+                      <NavigationMenuLink asChild>
+                        <a
+                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                          href="/"
+                        >
+                          <div className="mb-2 mt-4 text-lg font-medium">shadcn/ui</div>
+                          <p className="text-sm leading-tight text-muted-foreground">
+                            Beautifully designed components that you can copy and paste into your
+                            apps. Accessible. Customizable. Open Source.
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                    <ListItem href="/docs" title="Introduction">
+                      Re-usable components built using Radix UI and Tailwind CSS.
+                    </ListItem>
+                    <ListItem href="/docs/installation" title="Installation">
+                      How to install dependencies and structure your app.
+                    </ListItem>
+                    <ListItem href="/docs/primitives/typography" title="Typography">
+                      Styles for headings, paragraphs, lists...etc
+                    </ListItem>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
 
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger className="p-0 text-base font-bold uppercase">
-                      Services
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent className="NavigationMenuContent">
-                      <ul className="!z-[200] grid w-[400px] gap-3 bg-black p-4 font-bold text-white md:grid-cols-2">
-                        {components.map((component) => (
-                          <Link key={component.title} href={component.href}>
-                            {component.title}
-                          </Link>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <Link href="/" legacyBehavior passHref>
-                      <NavigationMenuLink className="">About Us</NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <Link href="/" legacyBehavior passHref>
-                      <NavigationMenuLink className="">Contact Us</NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
-            </ul>
-            {/* Login And SignUp Button */}
-            <div className="flex-center flex flex-row gap-10 overflow-hidden">
-              <div className="input-container text-black">
-                <input
-                  type="text"
-                  name="text"
-                  className="input !text-black"
-                  placeholder="Search something..."
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="white"
-                  viewBox="0 0 24 24"
-                  className="icon"
-                >
-                  <g strokeWidth="0" id="SVGRepo_bgCarrier"></g>
-                  <g strokeLinejoin="round" strokeLinecap="round" id="SVGRepo_tracerCarrier"></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <rect fill="white" height="24" width="24"></rect>
-                    <path
-                      d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM9 11.5C9 10.1193 10.1193 9 11.5 9C12.8807 9 14 10.1193 14 11.5C14 12.8807 12.8807 14 11.5 14C10.1193 14 9 12.8807 9 11.5ZM11.5 7C9.01472 7 7 9.01472 7 11.5C7 13.9853 9.01472 16 11.5 16C12.3805 16 13.202 15.7471 13.8957 15.31L15.2929 16.7071C15.6834 17.0976 16.3166 17.0976 16.7071 16.7071C17.0976 16.3166 17.0976 15.6834 16.7071 15.2929L15.31 13.8957C15.7471 13.202 16 12.3805 16 11.5C16 9.01472 13.9853 7 11.5 7Z"
-                      clipRule="evenodd"
-                      fillRule="evenodd"
-                    ></path>
-                  </g>
-                </svg>
-              </div>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                    {components.map((component) => (
+                      <ListItem key={component.title} title={component.title} href={component.href}>
+                        {component.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
 
-              <Link
-                href="/sign-in"
-                className="btn-one hover:text-accent text-lg font-bold uppercase text-white hover:transition-all hover:duration-300 hover:ease-in"
-              >
-                Login
-              </Link>
+              {/* item 2 */}
+              <NavigationMenuItem>
+                <Link href="/docs" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Documentation
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
 
-              <Theme />
-            </div>
-          </div>
+              {/* item 3 */}
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
       </div>
       <ReNavMobile />

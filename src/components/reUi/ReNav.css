@@ -64,3 +64,71 @@
   background-color: transparent;
   border: none;
 }
+.contentAnimate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation-duration: 250ms;
+  animation-timing-function: ease;
+}
+.contentAnimate[data-motion='from-start'] {
+  animation-name: enterFromLeft;
+}
+.contentAnimate[data-motion='from-end'] {
+  animation-name: enterFromRight;
+}
+.contentAnimate[data-motion='to-start'] {
+  animation-name: exitToLeft;
+}
+.contentAnimate[data-motion='to-end'] {
+  animation-name: exitToRight;
+}
+@media only screen and (min-width: 600px) {
+  .contentAnimate {
+    width: auto;
+  }
+}
+@keyframes enterFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes exitToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+@keyframes exitToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}

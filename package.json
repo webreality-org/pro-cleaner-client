@@ -13,7 +13,7 @@
 
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,css,html}": [
+    "src/**/*.{js,jsx,ts,tsx}": [
       "pnpm  lint:fix",
       "pnpm  prettier:fix",
       "pnpm  lint:check",
