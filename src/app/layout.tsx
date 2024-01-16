@@ -35,10 +35,7 @@ export default function RootLayout({ children }: TChildrenProps) {
     <html lang="en" suppressHydrationWarning>
       <body className={` ${inter.variable} ${spaceGrotesk.variable} `}>
         <Providers>
-          <div>
-            {children}
-            <Footer />
-          </div>
+          <div>{children}</div>
         </Providers>
       </body>
     </html>

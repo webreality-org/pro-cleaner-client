@@ -2,7 +2,7 @@
 'use client';
 import Image from 'next/image';
 
-import logo from '../../../public/assets/images/logo.jpg';
+import logo from '../../../public/assets/images/logo.svg';
 
 import { Button } from '@/components/ui/button';
 import {

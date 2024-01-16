@@ -3,6 +3,11 @@ export const themes = [
   { value: 'dark', label: 'Dark', icon: '/assets/icons/moon.svg' },
   { value: 'system', label: 'System', icon: '/assets/icons/computer.svg' },
 ];
+export const topHeaderItems = [
+  { icon: '/assets/icons/phone.svg', content: '+880 123123123' },
+  { icon: '/assets/icons/mail.svg', content: 'procleaner.owner@mail.com' },
+  { icon: '/assets/icons/clock.svg', content: '8:00am - 10:00pm Mon - Sun' },
+];
 
 export const BADGE_CRITERIA = {
   QUESTION_COUNT: {

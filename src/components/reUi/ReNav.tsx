@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 
@@ -78,22 +77,15 @@ ListItem.displayName = 'ListItem';
 
 function ReNav() {
   return (
-    <nav className="fixed top-0 !z-50 mx-auto w-[100vw] !border-transparent bg-[#16B1E9] ">
+    <nav className="fixed top-16 !z-50 mx-auto w-[100vw] !border-transparent bg-sky-700 text-white">
       <div className="relative mx-auto hidden w-full min-w-[780] max-w-[1400px] items-center justify-between bg-transparent px-4 lg:flex lg:px-2">
         <div className="mt-4 flex w-full flex-col">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="inline-flex items-start justify-start active:bg-none">
-              <Image className="" src="/assets/images/logo.svg" height={150} width={150} alt="" />
-            </Link>
-            <Link href="/" className="inline-flex items-start justify-start active:bg-none">
-              <Image className="" src="/assets/images/logo.svg" height={150} width={150} alt="" />
-            </Link>
-          </div>
           <NavigationMenu>
             <NavigationMenuList>
-              {/* item 1 */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="bg-transparent">
+                  Getting started
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">
@@ -122,9 +114,8 @@ function ReNav() {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="bg-transparent">Components</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                     {components.map((component) => (
@@ -135,17 +126,13 @@ function ReNav() {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
-              {/* item 2 */}
               <NavigationMenuItem>
                 <Link href="/docs" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <NavigationMenuLink className={(navigationMenuTriggerStyle(), 'bg-transparent')}>
                     Documentation
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
-
-              {/* item 3 */}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
