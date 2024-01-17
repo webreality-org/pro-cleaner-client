@@ -12,7 +12,7 @@ const Layout = ({ children }: TChildrenProps) => {
   return (
     <div className="flex min-h-screen flex-col justify-between">
       <div>
-        <div className="mx-auto max-w-7xl px-10">
+        <div className="mx-auto max-w-7xl px-10 py-2">
           <div className="flex items-center justify-between ">
             <Link href="/">
               <Image
@@ -37,7 +37,7 @@ const Layout = ({ children }: TChildrenProps) => {
         <main className=" relative">
           <div className="flex">
             <section className="flex  flex-1 flex-col">
-              <div className="mx-auto w-full max-w-5xl">{children}</div>
+              <div className="w-full ">{children}</div>
             </section>
           </div>
         </main>

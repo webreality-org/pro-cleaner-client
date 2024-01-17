@@ -30,7 +30,11 @@ label {
   font-size: 25px;
   transform: scale(1);
   border-radius: 50%;
-  transition: 0.3s ease top, 0.3s ease left, 0.3s ease transform, 0.3s ease background-color;
+  transition:
+    0.3s ease top,
+    0.3s ease left,
+    0.3s ease transform,
+    0.3s ease background-color;
   z-index: 1;
   background-color: none;
 }
@@ -46,7 +50,7 @@ label {
 }
 
 .moon:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -12px;
   left: -17px;
@@ -59,7 +63,7 @@ label {
 
 #toggle_checkbox:checked + label {
   background-color: rgb(75, 114, 94);
-  border: 4px solid  rgb(7, 189, 128);
+  border: 4px solid rgb(7, 189, 128);
 }
 
 #toggle_checkbox:checked + label .star {
@@ -71,4 +75,3 @@ label {
 #toggle_checkbox:checked + label .moon {
   bottom: 14px;
 }
-

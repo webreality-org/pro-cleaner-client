@@ -80,7 +80,7 @@ ListItem.displayName = 'ListItem';
 
 function ReNav() {
   return (
-    <nav className="shadow-custom fixed top-16 !z-50 mx-auto w-[100vw]  !border-transparent bg-primary-100/10 font-semibold text-primary-500 dark:bg-dark-100 dark:text-light-300">
+    <nav className="shadow-custom sticky top-0 !z-50 mx-auto w-[100vw]  !border-transparent bg-primary-100/30 font-semibold text-primary-500 dark:bg-dark-100 dark:text-light-300">
       <div className="mx-auto max-w-7xl px-10">
         <div className="relative mx-auto hidden w-full min-w-[780] max-w-[1400px] items-center justify-between bg-transparent  lg:flex ">
           <div className="flex w-full flex-col py-2">
