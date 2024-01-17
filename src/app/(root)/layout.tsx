@@ -36,7 +36,7 @@ const Layout = ({ children }: TChildrenProps) => {
         <ReNav />
         <main className=" relative">
           <div className="flex">
-            <section className="flex  flex-1 flex-col px-6   sm:px-14">
+            <section className="flex  flex-1 flex-col">
               <div className="mx-auto w-full max-w-5xl">{children}</div>
             </section>
           </div>

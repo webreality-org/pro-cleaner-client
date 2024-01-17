@@ -2,7 +2,10 @@
 import Link from 'next/link';
 import * as React from 'react';
 
-import './ReNav.css';
+import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
+import Theme from '../view/shared/navbar/Theme';
+// import './ReNav.css';
+
 import ReNavMobile from './ReNavMobile';
 
 import {
@@ -77,67 +80,80 @@ ListItem.displayName = 'ListItem';
 
 function ReNav() {
   return (
-    <nav className="fixed top-16 !z-50 mx-auto w-[100vw] !border-transparent bg-sky-700 text-white">
-      <div className="relative mx-auto hidden w-full min-w-[780] max-w-[1400px] items-center justify-between bg-transparent px-4 lg:flex lg:px-2">
-        <div className="mt-4 flex w-full flex-col">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent">
-                  Getting started
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                          href="/"
-                        >
-                          <div className="mb-2 mt-4 text-lg font-medium">shadcn/ui</div>
-                          <p className="text-sm leading-tight text-muted-foreground">
-                            Beautifully designed components that you can copy and paste into your
-                            apps. Accessible. Customizable. Open Source.
-                          </p>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                    <ListItem href="/docs" title="Introduction">
-                      Re-usable components built using Radix UI and Tailwind CSS.
-                    </ListItem>
-                    <ListItem href="/docs/installation" title="Installation">
-                      How to install dependencies and structure your app.
-                    </ListItem>
-                    <ListItem href="/docs/primitives/typography" title="Typography">
-                      Styles for headings, paragraphs, lists...etc
-                    </ListItem>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent">Components</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                    {components.map((component) => (
-                      <ListItem key={component.title} title={component.title} href={component.href}>
-                        {component.description}
+    <nav className="shadow-custom fixed top-16 !z-50 mx-auto w-[100vw]  !border-transparent bg-primary-100/10 font-semibold text-primary-500 dark:bg-dark-100 dark:text-light-300">
+      <div className="mx-auto max-w-7xl px-10">
+        <div className="relative mx-auto hidden w-full min-w-[780] max-w-[1400px] items-center justify-between bg-transparent  lg:flex ">
+          <div className="flex w-full flex-col py-2">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="bg-transparent px-2 ">
+                    Getting started
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="text-black">
+                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                      <li className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <a
+                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                            href="/"
+                          >
+                            <div className="mb-2 text-lg font-medium">shadcn/ui</div>
+                            <p className="text-sm leading-tight text-muted-foreground">
+                              Beautifully designed components that you can copy and paste into your
+                              apps. Accessible. Customizable. Open Source.
+                            </p>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                      <ListItem href="/docs" title="Introduction">
+                        Re-usable components built using Radix UI and Tailwind CSS.
                       </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/docs" legacyBehavior passHref>
-                  <NavigationMenuLink className={(navigationMenuTriggerStyle(), 'bg-transparent')}>
-                    Documentation
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+                      <ListItem href="/docs/installation" title="Installation">
+                        How to install dependencies and structure your app.
+                      </ListItem>
+                      <ListItem href="/docs/primitives/typography" title="Typography">
+                        Styles for headings, paragraphs, lists...etc
+                      </ListItem>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="bg-transparent px-2 ">
+                    Components
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="text-black">
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                      {components.map((component) => (
+                        <ListItem
+                          key={component.title}
+                          title={component.title}
+                          href={component.href}
+                        >
+                          {component.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/docs" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={(navigationMenuTriggerStyle(), 'bg-transparent px-2')}
+                    >
+                      Documentation
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+          <NoSSRWrapper>
+            <Theme />
+          </NoSSRWrapper>
         </div>
+        <ReNavMobile />
       </div>
-      <ReNavMobile />
     </nav>
   );
 }

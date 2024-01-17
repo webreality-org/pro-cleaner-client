@@ -2,6 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 import {
   Menubar,
@@ -14,6 +15,17 @@ import { themes } from '@/constants';
 
 const Theme = () => {
   const { theme, setTheme } = useTheme();
+
+  useEffect(
+    () =>
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        const newColorScheme = e.matches ? 'dark' : 'light';
+
+        setTheme(newColorScheme);
+      }),
+    [setTheme]
+  );
+
   return (
     <Menubar className="relative border-none bg-transparent shadow-none">
       <MenubarMenu>

@@ -19,22 +19,23 @@ module.exports = {
       colors: {
         primary: {
           100: '#CFEEFD',
-          200: '#B1EEF0',
-          300: '#7DD3FC',
-          400: '#39BDF8',
+          // 200: '#B1EEF0',
+          200: '#7DD3FC',
+          300: '#39BDF8',
           // 500: '#16B1E9',
-          500: '#4CA0E8',
-          600: '#0F8EE9',
-          700: '#0A6EB8',
+          400: '#4CA0E8',
+          500: '#0F8EE9',
+          600: '#0A6EB8',
           
         },
 
         dark: {
-          100: '#1A628F',
+          100: '#216285',
           200: '#192C3D',
-          300: '#17212B',
-          400: '#dddddd',
+          300: '#1e293b',
+          400: '#17212B',
           500: '#000000',
+          
         },
         light: {
           100: '#FFFFFF',
@@ -51,7 +52,8 @@ module.exports = {
           400: '#374151',
           500: '#1F2937',
         },
-        'accent-blue': '#b1eef0',
+     
+        // 'accent-blue': '#b1eef0',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -105,11 +107,11 @@ module.exports = {
       screens: {
         xs: '420px',
       },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
+      // borderRadius: {
+      //   lg: 'var(--radius)',
+      //   md: 'calc(var(--radius) - 2px)',
+      //   sm: 'calc(var(--radius) - 4px)',
+      // },
       keyframes: {
         'accordion-down': {
           from: { height: 0 },
@@ -158,7 +160,7 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        scaleIn: 'scaleIn 200ms ease',
+        scaleIn: 'scaleIn 200ms ease-in',
         scaleOut: 'scaleOut 300ms ease-out',
         fadeIn: 'fadeIn 200ms ease',
         fadeOut: 'fadeOut 200ms ease-out',
