@@ -10,38 +10,36 @@ import { TChildrenProps } from '@/types';
 
 const Layout = ({ children }: TChildrenProps) => {
   return (
-    <div className="flex min-h-screen flex-col justify-between">
-      <div>
-        <div className="mx-auto max-w-7xl px-10 py-2">
-          <div className="flex items-center justify-between ">
-            <Link href="/">
-              <Image
-                className=""
-                src="/assets/images/logo-transparent.png"
-                height={100}
-                width={100}
-                alt=""
-              />
-            </Link>
-            {topHeaderItems.map((item) => (
-              <>
-                <ReIconPlus key={item.icon} iconSrc={item.icon} content={item.content} />
-              </>
-            ))}
-            <Button type="button" className="rounded-2xl bg-primary-300 text-typo-400 ">
-              Get a quote
-            </Button>
-          </div>
+    <div className="">
+      <div className="mx-auto max-w-7xl px-10 py-2">
+        <div className="flex items-center justify-between ">
+          <Link href="/">
+            <Image
+              className=""
+              src="/assets/images/logo-transparent.png"
+              height={100}
+              width={100}
+              alt=""
+            />
+          </Link>
+          {topHeaderItems.map((item) => (
+            <>
+              <ReIconPlus key={item.icon} iconSrc={item.icon} content={item.content} />
+            </>
+          ))}
+          <Button
+            type="button"
+            className="rounded-full bg-primary-400 font-semibold capitalize text-light-100  "
+          >
+            Get a quote
+          </Button>
         </div>
-        <ReNav />
-        <main className=" relative">
-          <div className="flex">
-            <section className="flex  flex-1 flex-col">
-              <div className="w-full ">{children}</div>
-            </section>
-          </div>
-        </main>
       </div>
+      <ReNav />
+      <main className="">
+        <section className="">{children}</section>
+      </main>
+
       <Footer />
     </div>
   );

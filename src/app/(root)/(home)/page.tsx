@@ -22,7 +22,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         </div>
       </div>
 
-      <div className="container-size min-h-screen">
+      <div className=" min-h-screen">
         <div className="flex flex-col items-center justify-center py-20">
           <h1 className="font-title text-[3rem] font-normal text-black sm:text-[4rem] md:text-[6rem]">
             Explore LivingBook

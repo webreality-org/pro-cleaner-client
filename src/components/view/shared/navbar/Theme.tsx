@@ -29,7 +29,8 @@ const Theme = () => {
   return (
     <Menubar className="relative border-none bg-transparent shadow-none">
       <MenubarMenu>
-        <MenubarTrigger className="focus:bg-light-100 data-[state=open]:bg-light-100 dark:focus:bg-dark-200 dark:data-[state=open]:bg-dark-200">
+        <MenubarTrigger className="shadow-custom rounded-full bg-light-200 data-[state=open]:bg-light-100 dark:bg-light-300 dark:focus:bg-light-100 dark:data-[state=open]:bg-light-100">
+          {/* <MenubarTrigger className="bg-light-100 data-[state=open]:bg-light-100 dark:focus:bg-dark-100 dark:data-[state=open]:bg-dark-100"> */}
           {theme === 'light' ? (
             <Image
               src="/assets/icons/sun.svg"

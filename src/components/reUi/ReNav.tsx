@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
 import Theme from '../view/shared/navbar/Theme';
@@ -79,8 +79,26 @@ const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWit
 ListItem.displayName = 'ListItem';
 
 function ReNav() {
+  const [activeScroll, setActiveScroll] = useState(false);
+  console.log('🌼 🔥🔥 ReNav 🔥🔥 activeScroll🌼', activeScroll);
+
+  useEffect(() => {
+    const scrollMe = () => {
+      window.scrollY > 50 ? setActiveScroll(true) : setActiveScroll(false);
+    };
+    window.addEventListener('scroll', scrollMe);
+    return () => {
+      window.removeEventListener('scroll', scrollMe);
+    };
+  }, []);
+
   return (
-    <nav className="shadow-custom sticky top-0 !z-50 mx-auto w-[100vw]  !border-transparent bg-primary-100/30 font-semibold text-primary-500 dark:bg-dark-100 dark:text-light-300">
+    <nav
+      className={cn(
+        'shadow-custom sticky top-0 !z-50 mx-auto  !border-transparent bg-primary-100/30 font-semibold text-primary-500 dark:bg-dark-100 dark:text-light-300',
+        { 'bg-primary-400 text-light-100': activeScroll }
+      )}
+    >
       <div className="mx-auto max-w-7xl px-10">
         <div className="relative mx-auto hidden w-full min-w-[780] max-w-[1400px] items-center justify-between bg-transparent  lg:flex ">
           <div className="flex w-full flex-col py-2">
