@@ -14,8 +14,6 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 
-import './ReNav.css';
-
 import Link from 'next/link';
 
 import {

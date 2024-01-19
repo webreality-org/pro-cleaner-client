@@ -3,8 +3,8 @@ import { SearchParamsProps } from '@/types';
 export default async function Home({ searchParams }: SearchParamsProps) {
   return (
     <>
-      <div className="border-b border-black bg-hero-img-2 bg-cover bg-fixed">
-        <div className="inset-y-0 left-0 flex items-center justify-start bg-gradient-to-r from-black/50 via-transparent to-transparent">
+      <div className=" h-[80vh] bg-hero-img-5 bg-cover bg-fixed lg:bg-hero-img-4">
+        <div className="inset-y-0  left-0 flex h-[80vh] items-center justify-start bg-gradient-to-r from-black/50 via-transparent to-transparent">
           <div className="mx-auto flex max-w-7xl flex-col items-center py-[9rem]">
             <h1 className="font-title text-[3rem] font-normal text-white sm:text-[4rem] md:text-[6rem]">
               Stay curious.

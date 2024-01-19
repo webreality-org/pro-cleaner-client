@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 
 import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
 import Theme from '../view/shared/navbar/Theme';
-// import './ReNav.css';
 
 import ReNavMobile from './ReNavMobile';
+import TestSwitch from './TestSwitch';
 
 import {
   NavigationMenu,
@@ -80,7 +80,6 @@ ListItem.displayName = 'ListItem';
 
 function ReNav() {
   const [activeScroll, setActiveScroll] = useState(false);
-  console.log('🌼 🔥🔥 ReNav 🔥🔥 activeScroll🌼', activeScroll);
 
   useEffect(() => {
     const scrollMe = () => {
@@ -166,6 +165,9 @@ function ReNav() {
               </NavigationMenuList>
             </NavigationMenu>
           </div>
+
+          {/* <TestSwitch /> */}
+
           <NoSSRWrapper>
             <Theme />
           </NoSSRWrapper>
