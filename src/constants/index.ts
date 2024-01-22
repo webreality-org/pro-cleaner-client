@@ -4,9 +4,36 @@ export const themes = [
   { value: 'system', label: 'System', icon: '/assets/icons/computer.svg' },
 ];
 export const topHeaderItems = [
-  { icon: '/assets/icons/phone.svg', content: '+880 123123123' },
-  { icon: '/assets/icons/mail.svg', content: 'procleaner.owner@mail.com' },
-  { icon: '/assets/icons/clock.svg', content: '8:00am - 10:00pm Mon - Sun' },
+  [
+    { icon: '/assets/icons/phone-5.svg', content: '+880 123123123' },
+    { icon: '/assets/icons/mail.svg', content: 'procleaner.owner@mail.com' },
+  ],
+  [
+    { icon: '/assets/icons/clock.svg', content: '8:00am - 10:00pm Mon - Sun' },
+    { icon: '/assets/icons/location.svg', content: 'Dhaka, Bangladesh' },
+  ],
+
+  {
+    isSocial: true,
+    links: [
+      {
+        icon: '/assets/icons/facebook-1.svg',
+        content: 'https://www.facebook.com',
+      },
+      {
+        icon: '/assets/icons/instagram.svg',
+        content: 'https://www.bookmark.com',
+      },
+      {
+        icon: '/assets/icons/x.svg',
+        content: 'https://www.x.com',
+      },
+      {
+        icon: '/assets/icons/linkedin.svg',
+        content: 'https://www.linkedin.com',
+      },
+    ],
+  },
 ];
 
 export const BADGE_CRITERIA = {

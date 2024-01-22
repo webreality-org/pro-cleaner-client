@@ -4,8 +4,6 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import './test.css';
-
 import {
   Menubar,
   MenubarContent,
@@ -42,7 +40,7 @@ const Theme = () => {
     setTimeout(() => {
       setIsRotating(false);
       setTheme(selectedTheme);
-    }, 650);
+    }, 700);
   };
 
   return (
@@ -75,9 +73,9 @@ const Theme = () => {
           </div>
         </MenubarTrigger>
         <MenubarContent className="absolute right-[-3rem] mt-3 min-w-[120px] rounded border bg-light-100 py-2 dark:border-dark-400 dark:bg-dark-300">
-          {themes.map((item) => (
+          {themes.map((item, i) => (
             <MenubarItem
-              key={item.value}
+              key={i}
               className="flex items-center  gap-4 px-2.5 py-2 dark:focus:bg-dark-400"
               onClick={() => handleThemeChange(item.value)}
             >

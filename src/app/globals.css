@@ -85,7 +85,7 @@ body {
 
 @layer utilities {
   body {
-    @apply bg-white text-typo-200 dark:bg-dark-300 dark:text-light-300;
+    @apply bg-white text-typo-200 dark:bg-dark-650 dark:text-light-300;
   }
   .flex-center {
     @apply flex justify-center items-center;
@@ -136,7 +136,7 @@ body {
   filter: invert(13%) sepia(68%) saturate(3332%) hue-rotate(0deg) brightness(104%) contrast(106%) !important;
 }
 .icon-light {
-  filter: invert(93%) sepia(150%) saturate(660%) hue-rotate(60deg) brightness(104%) contrast(106%) !important;
+  filter: invert(43%) sepia(150%) saturate(660%) hue-rotate(60deg) brightness(104%) contrast(96%) !important;
 }
 
 .icon-dark {
@@ -186,4 +186,23 @@ body {
 
 .shadow-custom {
   box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 8px;
+}
+/* styles.css */
+.NavigationMenuIndicator {
+  background-color: #c7c8c87e
+
+}
+.NavigationMenuIndicator[data-orientation='horizontal'] {
+  /* height: 3px; */
+  transition: width, transform, 550ms ease;
+}
+
+.transition-opacity {
+  transition: opacity 0.3s ease; /* You can adjust the duration and easing function */
+}
+.NavigationMenuLink {
+  text-decoration: none!important;
+}
+.NavigationMenuLink[data-active] {
+  text-decoration: underline!important;
 }

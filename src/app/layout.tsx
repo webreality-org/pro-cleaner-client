@@ -5,7 +5,6 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import '../styles/theme.css';
 import './globals.css';
 
-import Footer from '@/components/view/shared/Footer';
 import Providers from '@/context/Providers';
 import { TChildrenProps } from '@/types';
 

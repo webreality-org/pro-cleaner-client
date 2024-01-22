@@ -1,16 +1,18 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
 import Theme from '../view/shared/navbar/Theme';
 
 import ReNavMobile from './ReNavMobile';
-import TestSwitch from './TestSwitch';
+import './test.css';
 
 import {
   NavigationMenu,
   NavigationMenuContent,
+  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
@@ -91,6 +93,24 @@ function ReNav() {
     };
   }, []);
 
+  const NextLink = ({ href, ...props }: { children: string; href: string }) => {
+    const pathname = usePathname();
+    const isActive = pathname === href;
+
+    return (
+      <Link href={href} passHref legacyBehavior>
+        <NavigationMenuLink
+          className={
+            (navigationMenuTriggerStyle(),
+            ' px-2 hover:bg-primary-100   py-[11px] NavigationMenuLink')
+          }
+          active={isActive}
+          {...props}
+        />
+      </Link>
+    );
+  };
+
   return (
     <nav
       className={cn(
@@ -104,9 +124,7 @@ function ReNav() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent px-2 ">
-                    Getting started
-                  </NavigationMenuTrigger>
+                  <NavigationMenuTrigger className=" px-2 ">Getting started</NavigationMenuTrigger>
                   <NavigationMenuContent className="text-black">
                     <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                       <li className="row-span-3">
@@ -141,12 +159,8 @@ function ReNav() {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="text-black">
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                      {components.map((component) => (
-                        <ListItem
-                          key={component.title}
-                          title={component.title}
-                          href={component.href}
-                        >
+                      {components.map((component, i) => (
+                        <ListItem key={i} title={component.title} href={component.href}>
                           {component.description}
                         </ListItem>
                       ))}
@@ -154,14 +168,13 @@ function ReNav() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/docs" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={(navigationMenuTriggerStyle(), 'bg-transparent px-2')}
-                    >
-                      Documentation
-                    </NavigationMenuLink>
-                  </Link>
+                  <NextLink href="/docs">Documentation</NextLink>
                 </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NextLink href="/about">about</NextLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuIndicator className="NavigationMenuIndicator" />
               </NavigationMenuList>
             </NavigationMenu>
           </div>

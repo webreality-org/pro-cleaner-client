@@ -26,16 +26,20 @@ module.exports = {
           400: '#4BA0E8',
           500: '#0F8EE9',
           600: '#0A6EB8',
-          
         },
-   
+
         dark: {
-          100: '#216285',
-          200: '#192C3D',
-          300: '#1e293b',
-          400: '#17212B',
-          500: '#000000',
-          
+          100: '#28AFD8',
+          200: '#1B638F',
+          300: '#192C3D',
+          400: '#232e34',
+          500: '#21252c',
+          600: '#426982',
+          650: '#355064',
+          700: '#2c3e4f',
+          800: '#232f3e',
+          900: '#17212B',
+          950: '#16191f',
         },
         light: {
           100: '#FFFFFF',
@@ -51,8 +55,10 @@ module.exports = {
           300: '#4B5563',
           400: '#374151',
           500: '#1F2937',
+          600: '#d5dbdb',
+          700: '#44b9d5',
         },
-     
+
         // 'accent-blue': '#b1eef0',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -103,12 +109,14 @@ module.exports = {
       backgroundImage: {
         'auth-dark': "url('/assets/images/auth-dark.png')",
         'auth-light': "url('/assets/images/auth-light.png')",
-        'hero-img-1': "url('https://www.libertytravel.com/sites/default/files/styles/full_size/public/lt-HP-main-1920x680-BIPOC-owned-travel.jpg?itok=pbtUdq7n')",
-        'hero-img-2': "url('https://www.relaxinplayadelcarmen.com/blog/filemanager/media/2023-01-1163be3302baf5e.jpg')",
-        'hero-img-3': "url('https://images.squarespace-cdn.com/content/v1/57fbf8c88419c2ee93cbe03e/1507661151953-139YEDGIHRBL9Q05CT2P/Panoramica-Dia%2Cxlarge.1483026236.jpg?format=2500w')",
+        'hero-img-1':
+          "url('https://www.libertytravel.com/sites/default/files/styles/full_size/public/lt-HP-main-1920x680-BIPOC-owned-travel.jpg?itok=pbtUdq7n')",
+        'hero-img-2':
+          "url('https://www.relaxinplayadelcarmen.com/blog/filemanager/media/2023-01-1163be3302baf5e.jpg')",
+        'hero-img-3':
+          "url('https://images.squarespace-cdn.com/content/v1/57fbf8c88419c2ee93cbe03e/1507661151953-139YEDGIHRBL9Q05CT2P/Panoramica-Dia%2Cxlarge.1483026236.jpg?format=2500w')",
         'hero-img-4': "url('/assets/images/banner2.webp')",
         'hero-img-5': "url('/assets/images/banner1.webp')",
-
       },
       screens: {
         xs: '420px',
