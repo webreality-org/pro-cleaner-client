@@ -2,8 +2,6 @@
 'use client';
 import Image from 'next/image';
 
-import logo from '../../../public/assets/images/logo.svg';
-
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -23,7 +21,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
-import Theme from '../view/shared/navbar/Theme';
+import Theme from '../ui-utils/Theme';
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -66,7 +64,13 @@ export default function ReNavMobile() {
   return (
     <div className="flex flex-row items-center justify-between p-4 lg:hidden">
       <div>
-        <Image src={logo} width={100} height={100} alt="logo" />
+        <Image
+          className=""
+          src="/assets/images/logo-transparent.png"
+          height={100}
+          width={100}
+          alt=""
+        />
       </div>
 
       <div className="flex items-center">
@@ -169,7 +173,13 @@ export default function ReNavMobile() {
           </SheetTrigger>
           <SheetContent side="left" className="flex flex-col bg-primary-100/60 dark:text-typo-100 ">
             <SheetHeader className="mt-2 flex items-center justify-between">
-              <Image src={logo} width={100} height={100} alt="logo" />
+              <Image
+                className=""
+                src="/assets/images/logo-transparent.png"
+                height={100}
+                width={100}
+                alt=""
+              />
             </SheetHeader>
             <ul className="mt-10 flex flex-col gap-y-6 text-lg font-bold text-dark-100 dark:text-typo-100 ">
               <SheetClose asChild>

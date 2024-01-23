@@ -19,18 +19,22 @@ export const topHeaderItems = [
       {
         icon: '/assets/icons/facebook-1.svg',
         content: 'https://www.facebook.com',
+        className: 'facebook',
       },
       {
         icon: '/assets/icons/instagram.svg',
         content: 'https://www.bookmark.com',
+        className: 'instagram',
       },
       {
         icon: '/assets/icons/x.svg',
         content: 'https://www.x.com',
+        className: 'x',
       },
       {
         icon: '/assets/icons/linkedin.svg',
         content: 'https://www.linkedin.com',
+        className: 'linkedin',
       },
     ],
   },

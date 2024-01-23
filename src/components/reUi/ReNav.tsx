@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
-import Theme from '../view/shared/navbar/Theme';
+import Theme from '../ui-utils/Theme';
 
 import ReNavMobile from './ReNavMobile';
 import './test.css';

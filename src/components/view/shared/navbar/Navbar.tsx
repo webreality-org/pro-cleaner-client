@@ -2,8 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import logo from '../.././../../../public/assets/images/logo.svg';
-
-import Theme from './Theme';
+import Theme from '../../../ui-utils/Theme';
 
 import NoSSRWrapper from '@/components/ui-utils/NoSSRWrapper';
 

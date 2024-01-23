@@ -7,10 +7,10 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         <div className="inset-y-0  left-0 flex h-[80vh] items-center justify-start bg-gradient-to-r from-black/50 via-transparent to-transparent">
           <div className="mx-auto flex max-w-7xl flex-col items-center py-[9rem]">
             <h1 className="font-title text-[3rem] font-normal text-white sm:text-[4rem] md:text-[6rem]">
-              Stay curious.
+              Stay neat
             </h1>
             <h2 className="font-title text-[2rem] font-normal text-yellow-400 sm:text-[3rem] md:text-[2rem]">
-              <a href="www.facebook.com">Explore LivingBook</a>
+              <a href="www.facebook.com">Explore Clean Living</a>
             </h2>
 
             <p className="w-full text-[1.3rem] font-normal leading-7 text-white md:w-[31rem] md:text-[1.5rem]">

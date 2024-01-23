@@ -87,6 +87,9 @@ body {
   body {
     @apply bg-white text-typo-200 dark:bg-dark-650 dark:text-light-300;
   }
+  .container {
+    @apply m-[0_auto] w-90 max-w-[1440px] px-0  md:w-85 xl:w-3/4;
+  }
   .flex-center {
     @apply flex justify-center items-center;
   }
@@ -140,12 +143,17 @@ body {
 }
 
 .icon-dark {
-  filter: invert(13%) sepia(0%) saturate(0%) hue-rotate(200deg) brightness(104%) contrast(106%) !important;
+  filter: invert(71%) sepia(78%) saturate(3920%) hue-rotate(183deg) brightness(97%) contrast(87%) !important;
+}
+.icon-social:hover {
+  box-shadow: rgba(16, 165, 171, 0.58) 0px 3px 8px;
 }
 
 .light-gradient {
   background: linear-gradient(132deg, rgba(247, 249, 255, 0.5) 0%, rgba(229, 237, 255, 0.25) 100%);
 }
+
+
 
 .primary-text-gradient {
   background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
@@ -189,20 +197,22 @@ body {
 }
 /* styles.css */
 .NavigationMenuIndicator {
-  background-color: #c7c8c87e
-
+  background-color: #c7c8c87e;
 }
 .NavigationMenuIndicator[data-orientation='horizontal'] {
   /* height: 3px; */
-  transition: width, transform, 550ms ease;
+  transition:
+    width,
+    transform,
+    550ms ease;
 }
 
 .transition-opacity {
   transition: opacity 0.3s ease; /* You can adjust the duration and easing function */
 }
 .NavigationMenuLink {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 .NavigationMenuLink[data-active] {
-  text-decoration: underline!important;
+  text-decoration: underline !important;
 }
