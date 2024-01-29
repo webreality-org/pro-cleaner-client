@@ -1,19 +1,24 @@
-import ReNav from '@/components/reUi/ReNav';
+import ReNavMobile from '@/components/reUi/ReNavMobile';
+import TopNav from '@/components/view/navbars/TopNav/TopNav';
+import Navbar from '@/components/view/navbars/navbar/Navbar';
+import Footer from '@/components/view/shared/Footer';
 import { TChildrenProps } from '@/types';
 
 const Layout = ({ children }: TChildrenProps) => {
   return (
-    <>
-      <ReNav />
-      <main className=" relative">
-        <div className="flex">
-          <section className="flex min-h-screen flex-1 flex-col px-6 pb-6 pt-36 max-md:pb-14 sm:px-14">
-            <div className="mx-auto w-full max-w-5xl">{children}</div>
-          </section>
-        </div>
+    <div className="">
+      <TopNav />
+
+      <Navbar />
+      <ReNavMobile />
+      <main className="">
+        <section className="">{children}</section>
       </main>
-    </>
+
+      <Footer />
+    </div>
   );
 };
 
 export default Layout;
+// max-md:pb-14

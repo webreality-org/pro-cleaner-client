@@ -5,7 +5,6 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import '../styles/theme.css';
 import './globals.css';
 
-import Footer from '@/components/view/shared/Footer';
 import Providers from '@/context/Providers';
 import { TChildrenProps } from '@/types';
 
@@ -35,14 +34,10 @@ export default function RootLayout({ children }: TChildrenProps) {
     <html lang="en" suppressHydrationWarning>
       <body className={` ${inter.variable} ${spaceGrotesk.variable} `}>
         <Providers>
-          <div>
-            {children}
-            <Footer />
-          </div>
+          <div>{children}</div>
         </Providers>
       </body>
     </html>
   );
 }
-// husky test folder
-// chmod updated
+

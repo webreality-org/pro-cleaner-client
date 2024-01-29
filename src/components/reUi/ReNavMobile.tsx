@@ -2,8 +2,6 @@
 'use client';
 import Image from 'next/image';
 
-import logo from '../../../public/assets/images/logo.jpg';
-
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -14,8 +12,6 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 
-import './ReNav.css';
-
 import Link from 'next/link';
 
 import {
@@ -24,6 +20,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
+import Theme from '../ui-utils/Theme';
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -66,9 +64,19 @@ export default function ReNavMobile() {
   return (
     <div className="flex flex-row items-center justify-between p-4 lg:hidden">
       <div>
-        <Image src={logo} width={100} height={100} alt="logo" />
+        <Image
+          className=""
+          src="/assets/images/logo-transparent.png"
+          height={100}
+          width={100}
+          alt=""
+        />
       </div>
-      <div className="flex">
+
+      <div className="flex items-center">
+        <NoSSRWrapper>
+          <Theme />
+        </NoSSRWrapper>
         <Sheet>
           <SheetTrigger asChild>
             <span className="flex cursor-pointer items-center justify-center text-center">
@@ -76,8 +84,8 @@ export default function ReNavMobile() {
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
                 y="0px"
-                width="60"
-                height="60"
+                width="40"
+                height="40"
                 viewBox="0 0 64 64"
               >
                 <linearGradient
@@ -89,8 +97,8 @@ export default function ReNavMobile() {
                   gradientUnits="userSpaceOnUse"
                   spreadMethod="reflect"
                 >
-                  <stop stopColor="white"></stop>
-                  <stop stopColor="white"></stop>
+                  <stop stopColor="black"></stop>
+                  <stop stopColor="black"></stop>
                 </linearGradient>
                 <path
                   fill="url(#BTq72ScaTZ1UBmT8omo2pa_44024_gr1)"
@@ -105,8 +113,8 @@ export default function ReNavMobile() {
                   gradientUnits="userSpaceOnUse"
                   spreadMethod="reflect"
                 >
-                  <stop stopColor="white"></stop>
-                  <stop stopColor="white"></stop>
+                  <stop stopColor="black"></stop>
+                  <stop stopColor="black"></stop>
                 </linearGradient>
                 <path
                   fill="url(#BTq72ScaTZ1UBmT8omo2pb_44024_gr2)"
@@ -121,8 +129,8 @@ export default function ReNavMobile() {
                   gradientUnits="userSpaceOnUse"
                   spreadMethod="reflect"
                 >
-                  <stop stopColor="white"></stop>
-                  <stop stopColor="white"></stop>
+                  <stop stopColor="black"></stop>
+                  <stop stopColor="black"></stop>
                 </linearGradient>
                 <path
                   fill="url(#BTq72ScaTZ1UBmT8omo2pc_44024_gr3)"
@@ -137,8 +145,8 @@ export default function ReNavMobile() {
                   gradientUnits="userSpaceOnUse"
                   spreadMethod="reflect"
                 >
-                  <stop offset="1" stopColor="white"></stop>
-                  <stop offset="0" stopColor="white"></stop>
+                  <stop offset="1" stopColor="black"></stop>
+                  <stop offset="0" stopColor="black"></stop>
                 </linearGradient>
                 <path
                   fill="url(#BTq72ScaTZ1UBmT8omo2pd_44024_gr4)"
@@ -153,8 +161,8 @@ export default function ReNavMobile() {
                   gradientUnits="userSpaceOnUse"
                   spreadMethod="reflect"
                 >
-                  <stop stopColor="white"></stop>
-                  <stop stopColor="white"></stop>
+                  <stop stopColor="black"></stop>
+                  <stop stopColor="black"></stop>
                 </linearGradient>
                 <path
                   fill="url(#BTq72ScaTZ1UBmT8omo2pe_44024_gr5)"
@@ -163,11 +171,17 @@ export default function ReNavMobile() {
               </svg>
             </span>
           </SheetTrigger>
-          <SheetContent side="left" className="flex flex-col bg-black/60">
+          <SheetContent side="left" className="flex flex-col bg-primary-100/60 dark:text-typo-100 ">
             <SheetHeader className="mt-2 flex items-center justify-between">
-              <Image src={logo} width={100} height={100} alt="logo" />
+              <Image
+                className=""
+                src="/assets/images/logo-transparent.png"
+                height={100}
+                width={100}
+                alt=""
+              />
             </SheetHeader>
-            <ul className="mt-10 flex flex-col gap-y-6 text-lg font-bold text-white">
+            <ul className="mt-10 flex flex-col gap-y-6 text-lg font-bold text-dark-100 dark:text-typo-100 ">
               <SheetClose asChild>
                 <li>
                   <Link href="/">HOME</Link>
@@ -175,15 +189,15 @@ export default function ReNavMobile() {
               </SheetClose>
 
               <li>
-                <Accordion type="single" collapsible className="!border-0">
+                <Accordion type="single" collapsible className="!border-0 ">
                   <AccordionItem value="1" className="border-0">
                     <AccordionTrigger className="!border-0 p-0 font-bold !ring-0 hover:border-0 hover:no-underline hover:ring-0 focus:border-none focus:outline-none focus:ring-0">
                       SERVICES
                     </AccordionTrigger>
                     <AccordionContent className="!border-0">
-                      <ul className="!z-[200] grid w-[400px] gap-3 p-2  font-bold text-white md:grid-cols-2">
-                        {components.map((component) => (
-                          <Link key={component.title} href={component.href}>
+                      <ul className="!z-[200] grid w-[400px] gap-3 p-2  font-bold text-dark-100 dark:text-typo-100  md:grid-cols-2">
+                        {components.map((component, i) => (
+                          <Link key={i} href={component.href}>
                             {component.title}
                           </Link>
                         ))}
