@@ -1,6 +1,31 @@
+'use client';
+import { useEffect, useState } from 'react';
+
 import { SearchParamsProps } from '@/types';
 
-export default async function Home({ searchParams }: SearchParamsProps) {
+export default function Home({ searchParams }: SearchParamsProps) {
+  const [isInputHidden, setIsInputHidden] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbarHeight = 75;
+      const inputElement = document.getElementById('scroll-hide-input');
+
+      if (inputElement) {
+        const inputRect = inputElement.getBoundingClientRect();
+        const isInputAboveNavbar = inputRect.bottom <= navbarHeight;
+
+        setIsInputHidden(isInputAboveNavbar);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <div className=" h-[80vh] bg-hero-img-5 bg-cover bg-fixed object-cover lg:bg-hero-img-4">
@@ -13,12 +38,19 @@ export default async function Home({ searchParams }: SearchParamsProps) {
               <a href="www.facebook.com">Explore Clean Living</a>
             </h2>
 
-            <p className="w-full text-[1.3rem] font-normal leading-7 text-white md:w-[31rem] md:text-[1.5rem]">
+            <p className="w-full text-center  text-[1.3rem] font-normal leading-7 text-white md:w-[31rem] md:text-[1.5rem]">
               Discover Hotels, Resorts, and many living facilities in your favorite places.
             </p>
             <button className="mt-[2.5rem] rounded-lg bg-lime-500 px-4 py-2 text-black">
               Know more
             </button>
+            <input
+              id="scroll-hide-input"
+              type="text"
+              className={`transition-all duration-300 ${
+                isInputHidden ? 'pointer-events-none opacity-0' : 'pointer-events-auto opacity-100'
+              }`}
+            />
           </div>
         </div>
       </div>

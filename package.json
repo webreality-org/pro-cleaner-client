@@ -10,7 +10,6 @@
     "lint:check": "eslint --ignore-path .eslintignore src --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives",
     "prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,html}'",
     "prettier:check": "prettier --ignore-path .gitignore --check 'src/**/*.{js,jsx,ts,tsx,css,html}'"
-
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
@@ -48,6 +47,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
     "react-redux": "^9.0.4",
+    "sharp": "^0.33.2",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"

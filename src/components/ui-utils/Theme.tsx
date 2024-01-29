@@ -39,8 +39,10 @@ const Theme = () => {
     setIsRotating(true);
     setTimeout(() => {
       setIsRotating(false);
+    }, 300);
+    setTimeout(() => {
       setTheme(selectedTheme);
-    }, 700);
+    }, 600);
   };
 
   return (
@@ -51,7 +53,7 @@ const Theme = () => {
           className="rounded-full bg-light-100 p-2 focus:bg-light-100 data-[state=open]:bg-light-100 dark:bg-transparent dark:focus:bg-transparent dark:data-[state=open]:bg-transparent"
         >
           <div
-            className={`transition-transform duration-500 ${isRotating ? 'rotate-[360deg]' : ''}`}
+            className={`transition-transform duration-700 ${isRotating ? 'rotate-[360deg]' : ''}`}
           >
             {theme === 'light' || (theme === 'system' && !systemLight) ? (
               <Image

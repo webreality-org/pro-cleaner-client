@@ -153,8 +153,6 @@ body {
   background: linear-gradient(132deg, rgba(247, 249, 255, 0.5) 0%, rgba(229, 237, 255, 0.25) 100%);
 }
 
-
-
 .primary-text-gradient {
   background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
   background-clip: text;
@@ -200,7 +198,7 @@ body {
   background-color: #c7c8c87e;
 }
 .NavigationMenuIndicator[data-orientation='horizontal'] {
-  /* height: 3px; */
+
   transition:
     width,
     transform,
@@ -215,4 +213,12 @@ body {
 }
 .NavigationMenuLink[data-active] {
   text-decoration: underline !important;
+}
+.arrow{
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-deg);
+  -webkit-transform: rotate(-deg); 
 }

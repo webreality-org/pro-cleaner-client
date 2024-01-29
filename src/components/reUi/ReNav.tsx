@@ -1,18 +1,15 @@
 'use client';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
-import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
-import Theme from '../ui-utils/Theme';
-
-import ReNavMobile from './ReNavMobile';
-import './test.css';
+import ArrowDrop from '../../../public/assets/icons-react/ArrowDrop';
 
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
@@ -21,42 +18,8 @@ import {
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: 'Alert Dialog',
-    href: '/docs/primitives/alert-dialog',
-    description:
-      'A modal dialog that interrupts the user with important content and expects a response.',
-  },
-  {
-    title: 'Hover Card',
-    href: '/docs/primitives/hover-card',
-    description: 'For sighted users to preview content available behind a link.',
-  },
-  {
-    title: 'Progress',
-    href: '/docs/primitives/progress',
-    description:
-      'Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.',
-  },
-  {
-    title: 'Scroll-area',
-    href: '/docs/primitives/scroll-area',
-    description: 'Visually or semantically separates content.',
-  },
-  {
-    title: 'Tabs',
-    href: '/docs/primitives/tabs',
-    description:
-      'A set of layered sections of content—known as tab panels—that are displayed one at a time.',
-  },
-  {
-    title: 'Tooltip',
-    href: '/docs/primitives/tooltip',
-    description:
-      'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
-  },
-];
+const svgContent =
+  '<svg height="36" viewBox="0 0 48 48" width="36" xmlns="http://www.w3.org/2000/svg"><path d="M14 20l10 10 10-10z" /><path d="M0 0h48v48h-48z" fill="none" /></svg>';
 const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
   ({ className, title, children, ...props }, ref) => {
     return (
@@ -79,113 +42,288 @@ const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWit
   }
 );
 ListItem.displayName = 'ListItem';
+export type TNavItem = {
+  dropdown: boolean;
+  title: string;
+  href?: string;
+  content?: { subTitle: string; href: string; description?: string }[];
+};
 
-function ReNav() {
+export type midNavMenu = { midNavMenu?: TNavItem[]; midNavSearch?: boolean };
+
+type TNavMenu = {
+  leftNav?: TNavItem[];
+  midNav?: midNavMenu;
+  rightNav?: TNavItem[];
+  additionalElement?: ReactNode;
+};
+
+const NextLink = ({ href, ...props }: { children: string; href: string }) => {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
+  return (
+    <Link className="" href={href} passHref legacyBehavior>
+      <NavigationMenuLink
+        className={(navigationMenuTriggerStyle(), '  NavigationMenuLink block  p-1')}
+        active={isActive}
+        {...props}
+      />
+    </Link>
+  );
+};
+
+const NavItem = ({ item }: { item: TNavItem }): ReactNode => {
+  return (
+    <NavigationMenuItem className="relative z-50 h-full w-full overflow-hidden  rounded-lg border-transparent py-2 group-hover:border-slate-700 dark:border-white/[0.2]">
+      {item.dropdown ? (
+        <>
+          <NavigationMenuTrigger className="p-1 ">{item.title}</NavigationMenuTrigger>
+
+          <NavigationMenuContent className="text-black">
+            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+              {item.content?.map((item, i) => (
+                <ListItem key={Math.random()} href={item.href} title={item.subTitle}>
+                  {item.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </>
+      ) : (
+        <NextLink href={item.href || ''}>{item.title}</NextLink>
+      )}
+    </NavigationMenuItem>
+  );
+};
+function ReNav({ leftNav, midNav, rightNav, additionalElement }: TNavMenu) {
   const [activeScroll, setActiveScroll] = useState(false);
+  const [showInput, setShowInput] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const scrollMe = () => {
-      window.scrollY > 50 ? setActiveScroll(true) : setActiveScroll(false);
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      // Check the condition for showing the input
+
+      // Check the condition for activeScroll with a delay
+      if (scrollY > 630) {
+        setTimeout(() => {
+          setShowInput(true);
+        }, 30);
+      } else {
+        setShowInput(false);
+      }
+      if (scrollY > 50) {
+        setTimeout(() => {
+          setActiveScroll(true);
+        }, 100);
+      } else {
+        setTimeout(() => {
+          setActiveScroll(false);
+        }, 100);
+      }
     };
-    window.addEventListener('scroll', scrollMe);
+
+    // Check the initial scroll position
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
-      window.removeEventListener('scroll', scrollMe);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const NextLink = ({ href, ...props }: { children: string; href: string }) => {
-    const pathname = usePathname();
-    const isActive = pathname === href;
-
-    return (
-      <Link href={href} passHref legacyBehavior>
-        <NavigationMenuLink
-          className={
-            (navigationMenuTriggerStyle(),
-            ' px-2 hover:bg-primary-100   py-[11px] NavigationMenuLink')
-          }
-          active={isActive}
-          {...props}
-        />
-      </Link>
-    );
-  };
 
   return (
     <nav
       className={cn(
-        'shadow-custom sticky top-0 !z-50 mx-auto  !border-transparent bg-primary-100/30 font-semibold text-primary-500 dark:bg-dark-100 dark:text-light-300',
+        'shadow-custom sticky top-0 !z-50 mx-auto !border-transparent bg-primary-100/30 font-semibold text-primary-500 dark:bg-dark-100 dark:text-light-300 transition-colors transform duration-500',
         { 'bg-primary-400 text-light-100': activeScroll }
       )}
     >
-      <div className="mx-auto max-w-7xl px-10">
-        <div className="relative mx-auto hidden w-full min-w-[780] max-w-[1400px] items-center justify-between bg-transparent  lg:flex ">
-          <div className="flex w-full flex-col py-2">
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className=" px-2 ">Getting started</NavigationMenuTrigger>
-                  <NavigationMenuContent className="text-black">
-                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                      <li className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <a
-                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                            href="/"
-                          >
-                            <div className="mb-2 text-lg font-medium">shadcn/ui</div>
-                            <p className="text-sm leading-tight text-muted-foreground">
-                              Beautifully designed components that you can copy and paste into your
-                              apps. Accessible. Customizable. Open Source.
-                            </p>
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                      <ListItem href="/docs" title="Introduction">
-                        Re-usable components built using Radix UI and Tailwind CSS.
-                      </ListItem>
-                      <ListItem href="/docs/installation" title="Installation">
-                        How to install dependencies and structure your app.
-                      </ListItem>
-                      <ListItem href="/docs/primitives/typography" title="Typography">
-                        Styles for headings, paragraphs, lists...etc
-                      </ListItem>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent px-2 ">
-                    Components
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="text-black">
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                      {components.map((component, i) => (
-                        <ListItem key={i} title={component.title} href={component.href}>
-                          {component.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NextLink href="/docs">Documentation</NextLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NextLink href="/about">about</NextLink>
-                </NavigationMenuItem>
+      <div className="container">
+        <div className="relative mx-auto hidden items-center justify-between bg-transparent  lg:flex ">
+          {/* nav item left */}
+          <div className="flex-center">
+            <Link
+              className={cn('hidden', {
+                'lg:block': activeScroll,
+                hidden: !activeScroll,
+              })}
+              href="/"
+            >
+              <Image
+                className=""
+                src="/assets/images/logo-white-transparent.png"
+                height={70}
+                width={70}
+                alt=""
+              />
+            </Link>
 
-                <NavigationMenuIndicator className="NavigationMenuIndicator" />
-              </NavigationMenuList>
-            </NavigationMenu>
+            <div className="flex  flex-col py-2">
+              {leftNav && leftNav.length > 0 && (
+                <NavigationMenu>
+                  <NavigationMenuList>
+                    {leftNav.map((item, i) => (
+                      <span
+                        key={item.title}
+                        className="group relative  block h-full w-full px-2 "
+                        onMouseEnter={() => setHoveredIndex(i)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                      >
+                        <AnimatePresence>
+                          {hoveredIndex === i && (
+                            <>
+                              <motion.span
+                                className="absolute  inset-0 block h-full w-full rounded-lg bg-primary-200/30  dark:bg-slate-800/[0.8] "
+                                layoutId="hoverBackground"
+                                initial={{ opacity: 0 }}
+                                animate={{
+                                  opacity: 1,
+                                  transition: { duration: 0.15 },
+                                }}
+                                exit={{
+                                  opacity: 0,
+                                  transition: { duration: 0.15, delay: 0.3 },
+                                }}
+                              />
+
+                              {item.dropdown && (
+                                <motion.div
+                                  className="absolute left-1/2 top-[68%] -translate-x-1/2"
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1, transition: { duration: 0 } }}
+                                  exit={{ opacity: 0, transition: { duration: 0, delay: 0 } }}
+                                >
+                                  <ArrowDrop />
+                                </motion.div>
+                              )}
+                            </>
+                          )}
+                        </AnimatePresence>
+                        <NavItem item={item} />
+                      </span>
+                    ))}
+                  </NavigationMenuList>
+                </NavigationMenu>
+              )}
+            </div>
+          </div>
+          {/* nav item mid */}
+          <div>
+            {/*  */}
+            <>
+              {midNav && midNav.midNavMenu && midNav.midNavMenu.length > 0 && (
+                <NavigationMenu>
+                  <NavigationMenuList>
+                    {midNav.midNavMenu.map((item, i) => (
+                      <span
+                        key={item.title}
+                        className="group relative  block h-full w-full px-2 "
+                        onMouseEnter={() => setHoveredIndex(i)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                      >
+                        <AnimatePresence>
+                          {hoveredIndex === i && (
+                            <>
+                              <motion.span
+                                className="absolute  inset-0 block h-full w-full rounded-lg bg-primary-200/30  dark:bg-slate-800/[0.8] "
+                                layoutId="hoverBackground"
+                                initial={{ opacity: 0 }}
+                                animate={{
+                                  opacity: 1,
+                                  transition: { duration: 0.15 },
+                                }}
+                                exit={{
+                                  opacity: 0,
+                                  transition: { duration: 0.15, delay: 0.3 },
+                                }}
+                              />
+
+                              {item.dropdown && (
+                                <motion.div
+                                  className="absolute left-1/2 top-[68%] -translate-x-1/2"
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1, transition: { duration: 0 } }}
+                                  exit={{ opacity: 0, transition: { duration: 0, delay: 0 } }}
+                                >
+                                  <ArrowDrop />
+                                </motion.div>
+                              )}
+                            </>
+                          )}
+                        </AnimatePresence>
+                        <NavItem item={item} />
+                      </span>
+                    ))}
+                  </NavigationMenuList>
+                </NavigationMenu>
+              )}
+              {midNav && midNav.midNavSearch && (
+                <input
+                  type="text"
+                  className={cn('hidden', {
+                    'lg:block': showInput,
+                  })}
+                />
+              )}
+            </>
           </div>
 
-          {/* <TestSwitch /> */}
+          {/* nav item right */}
+          <div className="flex-center">
+            {rightNav && rightNav.length > 0 && (
+              <NavigationMenu>
+                <NavigationMenuList>
+                  {rightNav.map((item, i) => (
+                    <span
+                      key={item.title}
+                      className="group relative  block h-full w-full px-2 "
+                      onMouseEnter={() => setHoveredIndex(i)}
+                      onMouseLeave={() => setHoveredIndex(null)}
+                    >
+                      <AnimatePresence>
+                        {hoveredIndex === i && (
+                          <>
+                            <motion.span
+                              className="absolute  inset-0 block h-full w-full rounded-lg bg-primary-200/30  dark:bg-slate-800/[0.8] "
+                              layoutId="hoverBackground"
+                              initial={{ opacity: 0 }}
+                              animate={{
+                                opacity: 1,
+                                transition: { duration: 0.15 },
+                              }}
+                              exit={{
+                                opacity: 0,
+                                transition: { duration: 0.15, delay: 0.3 },
+                              }}
+                            />
 
-          <NoSSRWrapper>
-            <Theme />
-          </NoSSRWrapper>
+                            {item.dropdown && (
+                              <motion.div
+                                className="absolute left-1/2 top-[68%] -translate-x-1/2"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1, transition: { duration: 0 } }}
+                                exit={{ opacity: 0, transition: { duration: 0, delay: 0 } }}
+                              >
+                                <ArrowDrop />
+                              </motion.div>
+                            )}
+                          </>
+                        )}
+                      </AnimatePresence>
+                      <NavItem item={item} />
+                    </span>
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+            )}
+            {additionalElement}
+          </div>
         </div>
-        <ReNavMobile />
       </div>
     </nav>
   );

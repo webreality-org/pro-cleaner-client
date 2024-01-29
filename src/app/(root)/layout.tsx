@@ -1,5 +1,6 @@
-import ReNav from '@/components/reUi/ReNav';
-import TopNav from '@/components/view/navbar/TopNav';
+import ReNavMobile from '@/components/reUi/ReNavMobile';
+import TopNav from '@/components/view/navbars/TopNav/TopNav';
+import Navbar from '@/components/view/navbars/navbar/Navbar';
 import Footer from '@/components/view/shared/Footer';
 import { TChildrenProps } from '@/types';
 
@@ -7,7 +8,9 @@ const Layout = ({ children }: TChildrenProps) => {
   return (
     <div className="">
       <TopNav />
-      <ReNav />
+
+      <Navbar />
+      <ReNavMobile />
       <main className="">
         <section className="">{children}</section>
       </main>
