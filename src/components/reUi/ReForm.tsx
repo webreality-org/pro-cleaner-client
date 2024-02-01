@@ -1,24 +1,27 @@
 'use client';
 
+import { DevTool } from '@hookform/devtools';
 import { ReactElement, ReactNode } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
+
 import { Form } from '@/components/ui/form';
 
-type FormConfig = {
+export type FormConfig = {
   defaultValues?: Record<string, any>;
   resolver?: any;
-  mode?: 'onChange';
+  mode?: 'onChange' | 'onBlur' | 'onSubmit' | 'onTouched' | 'all' | undefined;
 };
 
-type FormProps = {
+export type FormProps = {
   children?: ReactElement | ReactNode;
   submitHandler: SubmitHandler<any>;
 } & FormConfig;
 
-function ReForm({ children, submitHandler, defaultValues, resolver }: FormProps) {
+function ReForm({ children, submitHandler, defaultValues, resolver, mode = 'onBlur' }: FormProps) {
   const formConfig: FormConfig = {};
-  formConfig.mode = 'onChange';
+  formConfig.mode = mode;
 
   if (defaultValues) formConfig.defaultValues = defaultValues;
   if (resolver) formConfig.resolver = resolver;
@@ -28,15 +31,23 @@ function ReForm({ children, submitHandler, defaultValues, resolver }: FormProps)
   const { handleSubmit, reset } = form;
 
   const onSubmit: SubmitHandler<any> = (data) => {
+    console.log('🌼 🔥🔥 ReForm 🔥🔥 data🌼', data);
+
     submitHandler(data);
     // reset();
   };
   // useEffect(() => reset(defaultValues), [defaultValues, reset, form]);
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="relative space-y-3 overflow-x-hidden">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="relative h-[550px] w-[550px] space-y-3 overflow-x-hidden"
+      >
         {children}
       </form>
+      <NoSSRWrapper>
+        <DevTool control={form.control} />
+      </NoSSRWrapper>
     </Form>
   );
 }

@@ -18,8 +18,6 @@ import {
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 
-const svgContent =
-  '<svg height="36" viewBox="0 0 48 48" width="36" xmlns="http://www.w3.org/2000/svg"><path d="M14 20l10 10 10-10z" /><path d="M0 0h48v48h-48z" fill="none" /></svg>';
 const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
   ({ className, title, children, ...props }, ref) => {
     return (
@@ -58,7 +56,7 @@ type TNavMenu = {
   additionalElement?: ReactNode;
 };
 
-const NextLink = ({ href, ...props }: { children: string; href: string }) => {
+const NextLink = ({ href, ...props }: { children: ReactNode; href: string }) => {
   const pathname = usePathname();
   const isActive = pathname === href;
 
