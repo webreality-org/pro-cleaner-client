@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 
 import Home from '../../../../../public/assets/icons/home.svg';
 import product from '../../../../../public/assets/icons/product.svg';
+import logo from '../.././../../../public/assets/images/logo.svg';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -19,14 +20,17 @@ const LeftSidebar = () => {
   const asPath = usePathname();
 
   return (
-    <div className="top-0 justify-between space-y-20 border-r max-sm:hidden lg:w-[266px]">
+    <div className="sticky top-1 h-full justify-between space-y-3 border-r bg-white pt-2 max-sm:hidden lg:w-[250px]">
+      <div className="flex-center">
+        <Image src={logo} width="100" height="10" alt="" />
+      </div>
       <div className="mt-2 flex flex-1 flex-col gap-3 px-2 text-center">
         {/* home */}
         <Link
-          href="/dashBoardHome"
+          href="/dashboard-home"
           passHref
           className={
-            asPath === '/dashBoardHome'
+            asPath === '/dashboard-home'
               ? 'primary-gradient flex items-center justify-center gap-x-2 rounded-lg bg-slate-50/20 p-2 text-black'
               : 'text-dark300_light900 flex items-center justify-center gap-x-2 rounded-lg border p-2'
           }
@@ -36,7 +40,7 @@ const LeftSidebar = () => {
         </Link>
         {/* products */}
         <Accordion type="single" collapsible>
-          <AccordionItem value="item-1" style={{ border: '0px !important' }}>
+          <AccordionItem value="item-1" style={{ border: '0px gray !important' }}>
             <AccordionTrigger
               style={{ textDecoration: 'none', border: '1px solid' }}
               className={

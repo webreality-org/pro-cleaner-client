@@ -4,11 +4,12 @@ import Link from 'next/link';
 type TItem = { icon: string; content: string; className?: string };
 type TItemSocial = { isSocial: boolean; links: TItem[] };
 type TReIconPlusProps = { items: TItem | TItem[] | TItemSocial };
+
 export const ReIcon = ({ item }: { item: TItem }) => {
   return (
     <div className="flex-center gap-2 text-sm xl:text-base">
       <Image className="icon-dark" src={item.icon} height={16} width={16} alt="" />
-      {item.content}
+      <div dangerouslySetInnerHTML={{ __html: item.content }} />
     </div>
   );
 };
@@ -19,7 +20,9 @@ const ReIconPlus = ({ items }: TReIconPlusProps) => {
       {Array.isArray(items) ? (
         <div className="flex flex-col items-start">
           {items.map((item, index) => (
-            <ReIcon key={index} item={item} />
+            <>
+              <ReIcon key={index} item={item} />
+            </>
           ))}
         </div>
       ) : (items as TItemSocial).isSocial ? (

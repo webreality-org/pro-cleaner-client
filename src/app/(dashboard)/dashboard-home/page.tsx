@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function dashBoardHome() {
-  return <div>dashBoardHome</div>;
+  return <div className="h-[200vh]">dashBoardHome</div>;
 }

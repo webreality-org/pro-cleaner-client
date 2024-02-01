@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: TChildrenProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={` ${inter.variable} ${spaceGrotesk.variable} `}>
+      <body className={` ${inter.variable} ${spaceGrotesk.variable} select-none`}>
         <Providers>
           <div>{children}</div>
         </Providers>
@@ -40,4 +40,3 @@ export default function RootLayout({ children }: TChildrenProps) {
     </html>
   );
 }
-

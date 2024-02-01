@@ -1,3 +1,5 @@
+import { SideNavItem } from '@/types';
+
 export const themes = [
   { value: 'light', label: 'Light', icon: '/assets/icons/sun.svg' },
   { value: 'dark', label: 'Dark', icon: '/assets/icons/moon.svg' },
@@ -5,8 +7,14 @@ export const themes = [
 ];
 export const topHeaderItems = [
   [
-    { icon: '/assets/icons/phone-5.svg', content: '+880 123123123' },
-    { icon: '/assets/icons/mail.svg', content: 'procleaner.owner@mail.com' },
+    {
+      icon: '/assets/icons/phone-5.svg',
+      content: ` <a href="tel:+880 123123123">+880 123123123</a>`,
+    },
+    {
+      icon: '/assets/icons/mail.svg',
+      content: `<a href="mailto:procleaner.owner@mail.com">procleaner.owner@mail.com</a>`,
+    },
   ],
   [
     { icon: '/assets/icons/clock.svg', content: '8:00am - 10:00pm Mon - Sun' },
@@ -67,3 +75,40 @@ export const BADGE_CRITERIA = {
     GOLD: 100000,
   },
 };
+
+export const SIDENAV_ITEMS: SideNavItem[] = [
+  {
+    title: 'Home',
+    path: '/dashboard-home',
+    icon: '../../public/assets/icons/home.svg',
+  },
+  {
+    title: 'Product',
+    icon: '../../public/assets/icons/home.svg',
+    submenu: true,
+    subMenuItems: [
+      { title: 'Child-one', path: '/child-one' },
+      { title: 'Child-two', path: '/child-two' },
+    ],
+  },
+  {
+    title: 'Messages',
+    path: '/messages',
+    icon: '../../public/assets/icons/home.svg',
+  },
+  {
+    title: 'Settings',
+    path: '/settings',
+    icon: '../../public/assets/icons/home.svg',
+    submenu: true,
+    subMenuItems: [
+      { title: 'Account', path: '/settings/account' },
+      { title: 'Privacy', path: '/settings/privacy' },
+    ],
+  },
+  {
+    title: 'Help',
+    path: '/help',
+    icon: '../../public/assets/icons/home.svg',
+  },
+];

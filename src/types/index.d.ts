@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { JSXElementConstructor, ReactNode } from 'react';
 
 import { BADGE_CRITERIA } from '@/constants';
 
@@ -51,4 +51,12 @@ export type TChildrenProps = {
 export type TChildrenClassProps = {
   children: ReactNode;
   classModifier?: string;
+};
+
+export type SideNavItem = {
+  title: string;
+  path: string;
+  icon?: JSXElementConstructor.Element;
+  submenu?: boolean;
+  subMenuItems?: SideNavItem[];
 };

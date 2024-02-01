@@ -1,27 +1,21 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import logo from '../.././../../../public/assets/images/logo.svg';
 import Theme from '../../../ui-utils/Theme';
 
 import NoSSRWrapper from '@/components/ui-utils/NoSSRWrapper';
+import BreadCrumb from '@/components/view/shared/BreadCrumb/page';
 
 const Navbar = () => {
+  const pathname = usePathname();
+  const path = pathname.toString().toLowerCase().substring(1);
   return (
-    <nav className=" background-light900_dark200 z-50 w-full gap-5 px-6 py-2 shadow-sm dark:shadow-lg sm:px-12">
-      <div className="flex justify-between">
-        <Link href="/" className="flex items-center gap-1">
-          <p className="h2-bold py-2 font-spaceGrotesk text-dark-100 dark:text-light-100">
-            <Image src={logo} width="100" height="10" alt="" />
-          </p>
-        </Link>
-
-        <div className="flex-between gap-5">
-          <NoSSRWrapper>
-            <Theme />
-          </NoSSRWrapper>
-        </div>
+    <nav className=" sticky inset-x-0 top-0 z-30 hidden w-full flex-col border-b border-gray-200 bg-white transition-all md:flex">
+      <div className=" flex justify-end gap-5 px-2 py-6">
+        <NoSSRWrapper>
+          <Theme />
+        </NoSSRWrapper>
       </div>
+      <BreadCrumb path={path} />
     </nav>
   );
 };

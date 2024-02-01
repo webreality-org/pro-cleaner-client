@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export default function breadCrumb({ path }: any) {
   return (
-    <div className="mb-8 w-full">
-      <div className="border-stroke dark:border-dark-3 border-b p-4">
+    <div className="w-full">
+      <div className="border-stroke dark:border-dark-3 border-y px-2 py-4">
         <ul className="flex">
           <li className="flex items-center">
             <Link
