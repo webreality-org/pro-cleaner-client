@@ -4,14 +4,12 @@ import { MailIcon } from 'lucide-react';
 import { SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 
-import { loginSchema } from '../_validator/auth';
-
-import LoadingButton from '@/components/reUi/LoadingButton';
 import ReForm from '@/components/reUi/ReForm';
 import ReInput from '@/components/reUi/ReInput';
 import RePassInput from '@/components/reUi/RePassInput';
+import { userLoginSchema } from '@/lib/validations/userAuth.validations';
 
-export type TInputs = z.infer<typeof loginSchema>;
+export type TInputs = z.infer<typeof userLoginSchema>;
 
 const TodoRhf = () => {
   const defaultValues = {
@@ -25,11 +23,11 @@ const TodoRhf = () => {
   return (
     <ReForm
       submitHandler={onSubmit}
-      resolver={zodResolver(loginSchema)}
+      resolver={zodResolver(userLoginSchema)}
       defaultValues={defaultValues}
       mode="onChange"
     >
-      {/* <ReInput
+      <ReInput
         name="email"
         type="email"
         description="this is a input description"
@@ -37,8 +35,6 @@ const TodoRhf = () => {
         prefix={<MailIcon />}
       />
       <RePassInput />
-
-      <LoadingButton type="submit" text="Submit" /> */}
     </ReForm>
   );
 };

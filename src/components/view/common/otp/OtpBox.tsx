@@ -4,7 +4,7 @@ import { ChangeEvent, ClipboardEvent, KeyboardEvent, useEffect, useRef, useState
 
 import { useToast } from '@/components/ui/use-toast';
 
-const VerifyEmail = () => {
+const OtpBox = () => {
   const { toast } = useToast();
   const [otp, setOtp] = useState(['', '', '', '']);
 
@@ -122,11 +122,8 @@ const VerifyEmail = () => {
   }, [otp]);
 
   return (
-    <div className="shadow-custom-reset-password mx-auto mt-3 rounded-md px-4 py-8 300:px-8 400:max-w-md 400:px-14 sm:px-14">
-      <h4 className="mb-3 text-center text-lg font-semibold">Email Verification Code</h4>
-      <p className="mb-10 text-center">
-        We have sent an OTP code to your registered email. Please check your email.
-      </p>
+    <div>
+      {' '}
       <div className="my-4 flex items-center justify-between gap-1 rounded-md border p-2 400:p-4  sm:p-5">
         {otp.map((value, index) => (
           <input
@@ -147,7 +144,6 @@ const VerifyEmail = () => {
           />
         ))}
       </div>
-
       <div className="flex justify-between">
         <p>Did not get the code?</p>
         <div>
@@ -180,4 +176,4 @@ const VerifyEmail = () => {
   );
 };
 
-export default VerifyEmail;
+export default OtpBox;

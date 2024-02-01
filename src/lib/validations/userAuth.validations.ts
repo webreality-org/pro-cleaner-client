@@ -6,14 +6,14 @@ const phoneNumberRegex = /^(017|018|019|016|015|014|013)\d{8}$/;
 
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-export const loginSchema = z.object({
+export const userLoginSchema = z.object({
   email: z.string().email().min(2, {
     message: 'please use valid email.',
   }),
   password: z.string().min(6, { message: 'invalid password..' }).max(100),
 });
 
-export const registerSchema = z
+export const userRegisterSchema = z
   .object({
     firstName: z
       .string()
@@ -46,3 +46,4 @@ export const registerSchema = z
     message: 'Passwords must match',
     path: ['confirmPassword'],
   });
+export type TUserRegisterInput = z.infer<typeof userRegisterSchema>;

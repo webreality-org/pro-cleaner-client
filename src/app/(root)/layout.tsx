@@ -1,6 +1,6 @@
 import ReNavMobile from '@/components/reUi/ReNavMobile';
-import TopNav from '@/components/view/navbars/TopNav/TopNav';
-import Navbar from '@/components/view/navbars/navbar/Navbar';
+import TopNav from '@/components/view/shared/navbars/TopNav/TopNav';
+import Navbar from '@/components/view/shared/navbars/navbar/Navbar';
 import Footer from '@/components/view/shared/Footer';
 import { TChildrenProps } from '@/types';
 
