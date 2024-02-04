@@ -221,3 +221,6 @@ body {
   transform: rotate(-deg);
   -webkit-transform: rotate(-deg);
 }
+li {
+  text-decoration: none;
+}

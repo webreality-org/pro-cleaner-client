@@ -9,9 +9,9 @@ import Image from 'next/image';
 
 import logo from '../../../../../public/assets/images/logo.svg';
 
-import BreadCrumb from '@/components/view/shared/BreadCrumb/page';
 import { SIDENAV_ITEMS } from '@/constants';
 import { SideNavItem } from '@/types';
+import BreadCrumb from '@/components/view/shared/BreadCrumb/page';
 
 type MenuItemWithSubMenuProps = {
   item: SideNavItem;
@@ -37,7 +37,7 @@ const sidebar = {
   },
 };
 
-const MobileNav = () => {
+const HeaderMobile = () => {
   const pathname = usePathname();
   const path = pathname.toString().toLowerCase().substring(1);
   const containerRef = useRef(null);
@@ -45,60 +45,51 @@ const MobileNav = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
 
   return (
-    <div className="flex items-center justify-between px-2 md:hidden">
-      <motion.nav
-        initial={false}
-        animate={isOpen ? 'open' : 'closed'}
-        custom={height}
-        className={`:hidden fixed inset-0 z-50 h-32 w-full bg-white ${isOpen ? '' : 'pointer-events-none'}`}
-        ref={containerRef}
-      >
-        <div className="w-32 ">
-          <Image src={logo} width={200} height={100} alt="logo" />
-        </div>
-        <motion.div
-          className="absolute w-full self-center bg-white"
-          variants={sidebar}
-        ></motion.div>
-        <motion.ul variants={variants} className="absolute grid w-full gap-3 px-2 py-16">
-          {SIDENAV_ITEMS.map((item, idx) => {
-            const isLastItem = idx === SIDENAV_ITEMS.length - 1; // Check if it's the last item
+    <div className="sticky inset-0 z-50 grid grid-rows-2 bg-white md:hidden">
+      <div className="">
+        <Image src={logo} width={100} alt="logo" />
+        <motion.nav
+          initial={false}
+          animate={isOpen ? 'open' : 'closed'}
+          custom={height}
+          className={`fixed inset-0 z-50 w-full md:hidden ${isOpen ? '' : 'pointer-events-none'}`}
+          ref={containerRef}
+        >
+          <motion.div className="absolute inset-0 w-full bg-white" variants={sidebar} />
+          <motion.ul variants={variants} className="absolute grid w-full gap-3 px-4 py-16">
+            {SIDENAV_ITEMS.map((item, idx) => {
+              return (
+                <div className="w-full" key={idx}>
+                  {item.submenu ? (
+                    <MenuItemWithSubMenu item={item} toggleOpen={toggleOpen} />
+                  ) : (
+                    <MenuItem>
+                      <Link
+                        href={item.path}
+                        onClick={() => toggleOpen()}
+                        className={`flex w-full items-center justify-start p-2 text-lg  ${item.path === pathname ? 'font-bold' : ''}`}
+                      >
+                        {item.title}
+                      </Link>
+                    </MenuItem>
+                  )}
+                </div>
+              );
+            })}
+          </motion.ul>
+          <MenuToggle toggle={toggleOpen} />
+        </motion.nav>
+      </div>
 
-            return (
-              <div key={idx}>
-                {item.submenu ? (
-                  <MenuItemWithSubMenu item={item} toggleOpen={toggleOpen} />
-                ) : (
-                  <MenuItem>
-                    <Link
-                      href={item.path}
-                      onClick={() => toggleOpen()}
-                      className={`flex w-full text-sm ${item.path === pathname ? 'font-bold' : ''}`}
-                    >
-                      {item.title}
-                    </Link>
-                  </MenuItem>
-                )}
-
-                {!isLastItem && <MenuItem className="my-3 h-px w-full bg-gray-300" />}
-              </div>
-            );
-          })}
-        </motion.ul>
-        <div className="bg-white">
-          <BreadCrumb path={path} />
-        </div>
-
-        <MenuToggle toggle={toggleOpen} />
-      </motion.nav>
+      <BreadCrumb path={path} />
     </div>
   );
 };
 
-export default MobileNav;
+export default HeaderMobile;
 
 const MenuToggle = ({ toggle }: { toggle: any }) => (
-  <button onClick={toggle} className="pointer-events-auto absolute right-4 top-[35px] z-30">
+  <button onClick={toggle} className="pointer-events-auto absolute right-4 top-[14px] z-30">
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
         variants={{
@@ -134,7 +125,7 @@ const Path = (props: any) => (
   />
 );
 
-const MenuItem = ({ className, children }: { className?: string; children?: ReactNode }) => {
+export const MenuItem = ({ className, children }: { className?: string; children?: ReactNode }) => {
   return (
     <motion.li variants={MenuItemVariants} className={className}>
       {children}
@@ -142,25 +133,28 @@ const MenuItem = ({ className, children }: { className?: string; children?: Reac
   );
 };
 
-const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({ item, toggleOpen }) => {
+export const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({ item, toggleOpen }) => {
   const pathname = usePathname();
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
     <>
-      <MenuItem>
-        <button className="flex w-full text-2xl" onClick={() => setSubMenuOpen(!subMenuOpen)}>
-          <div className="flex w-full flex-row items-center justify-between text-sm">
+      <MenuItem className="mt-2 w-full">
+        <button
+          className="mx-auto flex w-full items-center justify-start px-2 text-lg"
+          onClick={() => setSubMenuOpen(!subMenuOpen)}
+        >
+          <div className="flex w-full flex-row items-center justify-between">
             <span className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}>
               {item.title}
             </span>
-            <div className={`${subMenuOpen && 'rotate-180'}`}>
+            <div className={`${subMenuOpen && 'rotate-180'} `}>
               <Icon icon="lucide:chevron-down" width="24" height="24" />
             </div>
           </div>
         </button>
       </MenuItem>
-      <div className="ml-2 mt-2 flex flex-col space-y-2">
+      <div className="ml-2 mt-2 flex flex-col space-y-4 pl-2">
         {subMenuOpen && (
           <>
             {item.subMenuItems?.map((subItem, subIdx) => {

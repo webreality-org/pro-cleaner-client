@@ -80,15 +80,15 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   {
     title: 'Home',
     path: '/dashboard-home',
-    icon: '../../public/assets/icons/home.svg',
+    icon: '/public/assets/icons/star.svg',
   },
   {
     title: 'Product',
-    icon: '../../public/assets/icons/home.svg',
+    icon: '/public/assets/icons/star.svg',
     submenu: true,
     subMenuItems: [
-      { title: 'Child-one', path: '/child-one' },
-      { title: 'Child-two', path: '/child-two' },
+      { title: 'Child-one', path: '/child-one', icon: '/public/assets/icons/star.svg' },
+      { title: 'Child-two', path: '/child-two', icon: '/public/assets/icons/star.svg' },
     ],
   },
   {

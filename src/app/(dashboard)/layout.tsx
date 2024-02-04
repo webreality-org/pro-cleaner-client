@@ -16,7 +16,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
               <Navbar />
               <MobileNavDashboard />
               <div className="relative flex grow flex-col bg-zinc-100">
-                <div className="px-2 pt-36 md:pt-4 lg:pt-4">{children}</div>
+                <div className="px-2 pt-4">{children}</div>
               </div>
             </div>
           </section>

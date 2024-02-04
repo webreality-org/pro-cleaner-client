@@ -2,12 +2,12 @@ import Link from 'next/link';
 
 export default function breadCrumb({ path }: any) {
   return (
-    <div className="w-full">
-      <div className="border-stroke dark:border-dark-3 border-y px-2 py-4">
+    <div className="flex w-full items-center justify-start border py-2">
+      <div className="px-2 py-4">
         <ul className="flex">
           <li className="flex items-center">
             <Link
-              href="/dashBoardHome"
+              href="/dashboard-home"
               className="hover:text-primary dark:text-dark-6 dark:hover:text-primary text-body-color flex items-center text-base font-medium"
             >
               <span className="pr-2">

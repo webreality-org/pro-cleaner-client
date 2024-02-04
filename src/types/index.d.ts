@@ -55,7 +55,7 @@ export type TChildrenClassProps = {
 
 export type SideNavItem = {
   title: string;
-  path: string;
+  path?: string;
   icon?: JSXElementConstructor.Element;
   submenu?: boolean;
   subMenuItems?: SideNavItem[];
