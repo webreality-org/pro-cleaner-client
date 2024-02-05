@@ -17,7 +17,7 @@ import { OtpVerification } from '@/components/view/common/otp/OtpVerification';
 import { cn } from '@/lib/utils';
 import { TUserRegisterInput, userRegisterSchema } from '@/lib/validations/userAuth.validations';
 import { useAppDispatch } from '@/redux/hooks';
-import { setTimerOn } from '@/redux/slices/otpTimerSlice';
+import { setTimerOn } from '@/redux/slices/optVerifySlices/otpTimerSlice';
 
 const SignupForm = () => {
   const dispatch = useAppDispatch();

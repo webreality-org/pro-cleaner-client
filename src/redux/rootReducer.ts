@@ -1,8 +1,10 @@
 import { baseApi } from './api/baseApi';
-import otpTimerSlice from './slices/otpTimerSlice';
+import otpCounterReducer from './slices/optVerifySlices/otpCounterSlice';
+import otpTimerReducer from './slices/optVerifySlices/otpTimerSlice';
 
 export const reducer = {
   // sidebar: sidebarReducer,
-  otpTimer: otpTimerSlice,
+  otpTimer: otpTimerReducer,
+  otpCounter: otpCounterReducer,
   [baseApi.reducerPath]: baseApi.reducer,
 };

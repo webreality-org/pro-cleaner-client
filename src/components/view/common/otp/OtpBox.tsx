@@ -4,59 +4,57 @@ import { ChangeEvent, ClipboardEvent, KeyboardEvent, useEffect, useRef, useState
 
 import { useToast } from '@/components/ui/use-toast';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { setTimerOn, timerState } from '@/redux/slices/otpTimerSlice';
+import { counterState, setCounter } from '@/redux/slices/optVerifySlices/otpCounterSlice';
+import { setTimerOn, timerState } from '@/redux/slices/optVerifySlices/otpTimerSlice';
 
 const OtpBox = () => {
+  const { toast } = useToast();
   const dispatch = useAppDispatch();
   const timerOn = useAppSelector(timerState);
-  const { toast } = useToast();
-  const [otp, setOtp] = useState(['', '', '', '']);
+  const counter = useAppSelector(counterState);
 
+  const [otp, setOtp] = useState(['', '', '', '']);
+  const [verifyDisabled, setVerifyDisabled] = useState(true);
+
+  const inputRefs = useRef<HTMLInputElement[]>([]);
   const email = '';
 
-  const [verifyDisabled, setVerifyDisabled] = useState(true);
-  const [count, setCount] = useState(10);
-  const inputRefs = useRef<HTMLInputElement[]>([]);
-  const countRef = useRef<number | null>(null);
-
+  // useEffect to handle the counter on
   useEffect(() => {
     if (timerOn) {
-      setCount(10);
-
-      countRef.current = window.setInterval(() => {
-        setCount((prevCount) => {
-          if (prevCount === 1) {
-            clearInterval(countRef.current!);
-            dispatch(setTimerOn(false));
-          }
-          return prevCount - 1;
-        });
+      const interval = setInterval(() => {
+        dispatch(setCounter(counter - 1));
       }, 1000);
+
+      return () => clearInterval(interval);
     }
-
-    return () => clearInterval(countRef.current!);
-  }, [timerOn, dispatch]);
-
+  }, [timerOn, dispatch, counter]);
+  // useEffect to handle counter off
   useEffect(() => {
-    if (count === 0) {
-      clearInterval(countRef.current!);
+    if (counter === 0) {
       dispatch(setTimerOn(false));
     }
-  }, [count, dispatch]);
+  }, [counter, dispatch]);
+  // useEffect to handle the focus on the first input
   useEffect(() => {
-    inputRefs.current[0]?.focus();
-  }, []);
+    setTimeout(() => {
+      inputRefs.current[0]?.focus();
+    }, 500);
+  }, [timerOn]);
 
+  // useEffect to handle the verify button disable toggle
+  useEffect(() => {
+    const isFilled = otp.every((digit) => /\d/.test(digit));
+    setVerifyDisabled(!isFilled);
+  }, [otp]);
+  // resend handler
   const handleResend = () => {
     setOtp(['', '', '', '']);
-    clearInterval(countRef.current!);
-    dispatch(setTimerOn(true));
-    setCount(10);
-    countRef.current = window.setInterval(() => {
-      setCount((prevCount) => prevCount - 1);
-    }, 1000);
-  };
 
+    dispatch(setTimerOn(true));
+    dispatch(setCounter(60));
+  };
+  // input change handler
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const { value } = e.target;
 
@@ -75,7 +73,7 @@ const OtpBox = () => {
     const isFilled = otp.every((digit) => /\d/.test(digit));
     setVerifyDisabled(!isFilled);
   };
-
+  // paste handler
   const handlePaste = (e: ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     const pastedData = e.clipboardData.getData('text/plain');
@@ -100,7 +98,7 @@ const OtpBox = () => {
       return updatedOtp;
     });
   };
-
+  // keydown handler
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>, index: number) => {
     if (event.key === 'Backspace') {
       setOtp((prevOtp) => {
@@ -112,6 +110,7 @@ const OtpBox = () => {
       inputRefs.current[index - 1]?.focus();
     }
   };
+  // arrow key handler
   const handleArrowKey = (event: KeyboardEvent<HTMLInputElement>, index: number) => {
     if (event.key === 'ArrowLeft' && index > 0) {
       inputRefs.current[index - 1]?.focus();
@@ -119,7 +118,7 @@ const OtpBox = () => {
       inputRefs.current[index + 1]?.focus();
     }
   };
-
+  // verify email handler
   const handleVerifyEmail = () => {
     if (!email) {
       toast({
@@ -131,11 +130,6 @@ const OtpBox = () => {
     const bodyData = { email, otp: otp.join('') };
     console.log(bodyData);
   };
-
-  useEffect(() => {
-    const isFilled = otp.every((digit) => /\d/.test(digit));
-    setVerifyDisabled(!isFilled);
-  }, [otp]);
 
   return (
     <div>
@@ -164,7 +158,7 @@ const OtpBox = () => {
         <div>
           <button
             className="text-blue-500 disabled:text-black"
-            disabled={count !== 0}
+            disabled={counter !== 0}
             type="button"
             onClick={handleResend}
           >
@@ -172,9 +166,9 @@ const OtpBox = () => {
           </button>
           {timerOn && (
             <span className="ml-2 ">
-              {count > 0 ? 'in' : ''}
-              <span className="-mr-1"> {count > 0 ? count : ''} </span>
-              {count > 0 ? 's' : ''}
+              {counter > 0 ? 'in' : ''}
+              <span className="-mr-1"> {counter > 0 ? counter : ''} </span>
+              {counter > 0 ? 's' : ''}
             </span>
           )}
         </div>
