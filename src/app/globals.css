@@ -224,7 +224,7 @@ body {
   transform: rotate(-deg);
   -webkit-transform: rotate(-deg);
 }
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 /* Chrome, Safari, Edge, Opera */

@@ -16,8 +16,11 @@ import { Form } from '@/components/ui/form';
 import { OtpVerification } from '@/components/view/common/otp/OtpVerification';
 import { cn } from '@/lib/utils';
 import { TUserRegisterInput, userRegisterSchema } from '@/lib/validations/userAuth.validations';
+import { useAppDispatch } from '@/redux/hooks';
+import { setTimerOn } from '@/redux/slices/otpTimerSlice';
 
 const SignupForm = () => {
+  const dispatch = useAppDispatch();
   const [completedSteps, setCompletedSteps] = useState(0);
   const [formStep, setFormStep] = useState(0);
   const [passwordError, setPasswordError] = useState(false);
@@ -69,19 +72,18 @@ const SignupForm = () => {
   }, [setPasswordError, getFieldState, formStep, setFieldError, emailState, passwordError]);
 
   const onSubmit: SubmitHandler<TUserRegisterInput> = async (data) => {
-    setTimeout(() => {
-      if (data) {
-        setFormStep((prev) => prev + 1);
-        setCompletedSteps((prev) => prev + 1);
-      }
-      console.log(data);
-    }, 3000);
+    if (data) {
+      setFormStep((prev) => prev + 1);
+      setCompletedSteps((prev) => prev + 1);
+      dispatch(setTimerOn(true));
+    }
+    console.log(data);
 
     console.log('🌼 🔥🔥 const onSubmit:SubmitHandler<Input>= 🔥🔥 data🌼', data);
   };
 
   return (
-    <div>
+    <div className="p-2">
       <Stepper currentStep={formStep} steps={steps} completedSteps={completedSteps} />
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="relative space-y-3 overflow-x-hidden">
@@ -127,7 +129,7 @@ const SignupForm = () => {
               ease: 'easeInOut',
             }}
           >
-            {formStep === 2 && <OtpVerification />}
+            {<OtpVerification />}
           </motion.div>
 
           <div className="">
@@ -158,7 +160,7 @@ const SignupForm = () => {
               <Button
                 type="button"
                 className={cn('text-typo-50 bg-primary-400 ', {
-                  hidden: formStep === 0,
+                  hidden: formStep !== 1,
                 })}
                 onClick={() => {
                   setFormStep((prev) => prev - 1);

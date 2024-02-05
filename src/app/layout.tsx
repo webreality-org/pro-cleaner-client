@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     icon: '/assets/images/site-logo.svg',
   },
 };
-
+//
 export default function RootLayout({ children }: TChildrenProps) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -40,4 +40,3 @@ export default function RootLayout({ children }: TChildrenProps) {
     </html>
   );
 }
-

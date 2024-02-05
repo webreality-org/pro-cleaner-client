@@ -3,31 +3,46 @@
 import { ChangeEvent, ClipboardEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 
 import { useToast } from '@/components/ui/use-toast';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { setTimerOn, timerState } from '@/redux/slices/otpTimerSlice';
 
 const OtpBox = () => {
+  const dispatch = useAppDispatch();
+  const timerOn = useAppSelector(timerState);
   const { toast } = useToast();
   const [otp, setOtp] = useState(['', '', '', '']);
 
   const email = '';
 
   const [verifyDisabled, setVerifyDisabled] = useState(true);
-  const [count, setCount] = useState(60);
+  const [count, setCount] = useState(10);
   const inputRefs = useRef<HTMLInputElement[]>([]);
   const countRef = useRef<number | null>(null);
 
   useEffect(() => {
-    countRef.current = window.setInterval(() => {
-      setCount((prevCount) => prevCount - 1);
-    }, 1000);
+    if (timerOn) {
+      setCount(10);
+
+      countRef.current = window.setInterval(() => {
+        setCount((prevCount) => {
+          if (prevCount === 1) {
+            clearInterval(countRef.current!);
+            dispatch(setTimerOn(false));
+          }
+          return prevCount - 1;
+        });
+      }, 1000);
+    }
 
     return () => clearInterval(countRef.current!);
-  }, []);
+  }, [timerOn, dispatch]);
 
   useEffect(() => {
     if (count === 0) {
       clearInterval(countRef.current!);
+      dispatch(setTimerOn(false));
     }
-  }, [count]);
+  }, [count, dispatch]);
   useEffect(() => {
     inputRefs.current[0]?.focus();
   }, []);
@@ -35,6 +50,7 @@ const OtpBox = () => {
   const handleResend = () => {
     setOtp(['', '', '', '']);
     clearInterval(countRef.current!);
+    dispatch(setTimerOn(true));
     setCount(10);
     countRef.current = window.setInterval(() => {
       setCount((prevCount) => prevCount - 1);
@@ -123,7 +139,6 @@ const OtpBox = () => {
 
   return (
     <div>
-      {' '}
       <div className="my-4 flex items-center justify-between gap-1 rounded-md border p-2 400:p-4  sm:p-5">
         {otp.map((value, index) => (
           <input
@@ -155,11 +170,13 @@ const OtpBox = () => {
           >
             Resend
           </button>
-          <span className="ml-2 space-x-1">
-            {count > 0 ? 'in' : ''}
-            <span className="pl-.5"> {count > 0 ? count : ''} </span>
-            {count > 0 ? 's' : ''}
-          </span>
+          {timerOn && (
+            <span className="ml-2 ">
+              {count > 0 ? 'in' : ''}
+              <span className="-mr-1"> {count > 0 ? count : ''} </span>
+              {count > 0 ? 's' : ''}
+            </span>
+          )}
         </div>
       </div>
       <div className="grid place-items-center">
