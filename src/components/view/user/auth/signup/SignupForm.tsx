@@ -41,8 +41,6 @@ const SignupForm = () => {
   });
   const { getFieldState, handleSubmit, watch, formState } = form;
   const { isSubmitting } = formState;
-  console.log('🌼 🔥🔥 SignupForm 🔥🔥 isSubmitting🌼', isSubmitting);
-
   const emailState = getFieldState('email');
   useEffect(() => {
     const passwordState = getFieldState('password');
@@ -78,8 +76,6 @@ const SignupForm = () => {
       dispatch(setTimerOn(true));
     }
     console.log(data);
-
-    console.log('🌼 🔥🔥 const onSubmit:SubmitHandler<Input>= 🔥🔥 data🌼', data);
   };
 
   return (
@@ -129,7 +125,7 @@ const SignupForm = () => {
               ease: 'easeInOut',
             }}
           >
-            {<OtpVerification />}
+            <OtpVerification />
           </motion.div>
 
           <div className="">

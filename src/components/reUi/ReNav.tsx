@@ -1,5 +1,6 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
+import { User2Icon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -54,6 +55,7 @@ type TNavMenu = {
   midNav?: midNavMenu;
   rightNav?: TNavItem[];
   additionalElement?: ReactNode;
+  loginButton?: boolean;
 };
 
 const NextLink = ({ href, ...props }: { children: ReactNode; href: string }) => {
@@ -80,7 +82,7 @@ const NavItem = ({ item }: { item: TNavItem }): ReactNode => {
 
           <NavigationMenuContent className="text-black">
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              {item.content?.map((item, i) => (
+              {item.content?.map((item) => (
                 <ListItem key={Math.random()} href={item.href} title={item.subTitle}>
                   {item.description}
                 </ListItem>
@@ -94,7 +96,7 @@ const NavItem = ({ item }: { item: TNavItem }): ReactNode => {
     </NavigationMenuItem>
   );
 };
-function ReNav({ leftNav, midNav, rightNav, additionalElement }: TNavMenu) {
+function ReNav({ leftNav, midNav, rightNav, additionalElement, loginButton = true }: TNavMenu) {
   const [activeScroll, setActiveScroll] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -102,10 +104,6 @@ function ReNav({ leftNav, midNav, rightNav, additionalElement }: TNavMenu) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-
-      // Check the condition for showing the input
-
-      // Check the condition for activeScroll with a delay
       if (scrollY > 630) {
         setTimeout(() => {
           setShowInput(true);
@@ -319,7 +317,9 @@ function ReNav({ leftNav, midNav, rightNav, additionalElement }: TNavMenu) {
                 </NavigationMenuList>
               </NavigationMenu>
             )}
+            {loginButton ? <Link href={'/sign-in'}>login</Link> : <User2Icon className="h-5 w-5" />}
             {additionalElement}
+            {/* {!loginButton && <User2Icon className="h-6 w-6" />} */}
           </div>
         </div>
       </div>

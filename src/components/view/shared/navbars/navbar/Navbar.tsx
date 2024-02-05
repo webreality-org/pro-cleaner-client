@@ -71,9 +71,9 @@ const Navbar = () => {
     <ReNav
       leftNav={leftNav}
       midNav={midNav}
+      loginButton={true}
       additionalElement={
         <>
-          <button type="button">login</button>
           <NoSSRWrapper>
             <Theme />
           </NoSSRWrapper>
