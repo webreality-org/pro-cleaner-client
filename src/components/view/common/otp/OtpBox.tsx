@@ -1,13 +1,18 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { ChangeEvent, ClipboardEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
+
+import { OtpBoxProps } from './OtpVerification';
 
 import { useToast } from '@/components/ui/use-toast';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { counterState, setCounter } from '@/redux/slices/optVerifySlices/otpCounterSlice';
 import { setTimerOn, timerState } from '@/redux/slices/optVerifySlices/otpTimerSlice';
 
-const OtpBox = () => {
+const OtpBox = ({ setCompletedSteps, completedSteps }: OtpBoxProps) => {
+  const searchParams = useSearchParams();
+
   const { toast } = useToast();
   const dispatch = useAppDispatch();
   const timerOn = useAppSelector(timerState);
@@ -118,8 +123,16 @@ const OtpBox = () => {
       inputRefs.current[index + 1]?.focus();
     }
   };
+  useEffect(() => {
+    const search = searchParams.get('fs');
+    if (search === '2') {
+      setCompletedSteps(2);
+    }
+  }, [searchParams, setCompletedSteps]);
   // verify email handler
   const handleVerifyEmail = () => {
+    setCompletedSteps(3);
+    setOtp(['', '', '', '']);
     if (!email) {
       toast({
         title: 'Passwords do not match',
@@ -174,14 +187,18 @@ const OtpBox = () => {
         </div>
       </div>
       <div className="grid place-items-center">
-        <button
-          type="button"
-          className="mt-10  rounded bg-blue-500 px-4 py-2 text-white disabled:opacity-50"
-          disabled={verifyDisabled}
-          onClick={handleVerifyEmail}
-        >
-          Verify Email
-        </button>
+        {completedSteps !== 3 ? (
+          <button
+            type="button"
+            className="mt-10  rounded bg-blue-500 px-4 py-2 text-white disabled:opacity-50"
+            disabled={verifyDisabled}
+            onClick={handleVerifyEmail}
+          >
+            Verify Email
+          </button>
+        ) : (
+          <p className="mt-10 text-green-500">congratulations! Email Verified. Try Login</p>
+        )}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -15,18 +15,32 @@ import { ReStepper } from '@/components/reUi/reStepper/ReStepper';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { OtpVerification } from '@/components/view/common/otp/OtpVerification';
-import { cn } from '@/lib/utils';
+import { cn, formUrlQuery } from '@/lib/utils';
 import { TUserRegisterInput, userRegisterSchema } from '@/lib/validations/userAuth.validations';
 import { useAppDispatch } from '@/redux/hooks';
 import { setTimerOn } from '@/redux/slices/optVerifySlices/otpTimerSlice';
 
 const SignupForm = () => {
+  const [formStep, setFormStep] = useState(0);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const handleUpdateParams = (value: string) => {
+    const newUrl = formUrlQuery({
+      params: searchParams.toString(),
+      key: 'fs',
+      value,
+    });
+
+    router.push(newUrl, { scroll: false });
+  };
+
   const dispatch = useAppDispatch();
   const [completedSteps, setCompletedSteps] = useState(0);
-  const [formStep, setFormStep] = useState(0);
+
   const [passwordError, setPasswordError] = useState(false);
   const [fieldError, setFieldError] = useState(false);
-  const steps = ['Info', 'Password', 'Verify', 'confirm'];
+  const steps = ['Info', 'Password', 'Verify'];
   const defaultValues = {
     confirmPassword: '',
     email: '',
@@ -78,10 +92,23 @@ const SignupForm = () => {
     }
     console.log(data);
   };
+  useEffect(() => {
+    const search = searchParams.get('fs');
+    console.log('🌼 🔥🔥 ReGlide 🔥🔥 search🌼', search);
+
+    if (search === '2') {
+      setFormStep(parseInt(search));
+    }
+  }, [searchParams]);
 
   return (
     <div className="p-2">
-      <ReStepper currentStep={formStep} steps={steps} completedSteps={completedSteps} />
+      <ReStepper
+        currentStep={formStep}
+        setFormStep={setFormStep}
+        steps={steps}
+        completedSteps={completedSteps}
+      />
       <Form {...form}>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -99,10 +126,10 @@ const SignupForm = () => {
             />
           </ReGlide>
           <ReGlide index={2} formStep={formStep}>
-            <OtpVerification />
-          </ReGlide>
-          <ReGlide index={3} formStep={formStep}>
-            <OtpVerification />
+            <OtpVerification
+              setCompletedSteps={setCompletedSteps}
+              completedSteps={completedSteps}
+            />
           </ReGlide>
 
           <div className="">
@@ -118,12 +145,14 @@ const SignupForm = () => {
                   'disabled:opacity-40 disabled:text-white text-typo-50 bg-primary-500 ',
                   {
                     // hidden: formStep === 1,
-                    hidden: formStep !== 0,
+                    hidden: formStep !== 0 || searchParams.get('fs') === '2',
                   }
                 )}
                 onClick={() => {
                   setFormStep((prev) => prev + 1);
                   setCompletedSteps((prev) => prev + 1);
+
+                  handleUpdateParams((formStep + 1).toString());
                 }}
               >
                 Next
@@ -156,15 +185,16 @@ const SignupForm = () => {
           </div>
         </form>
         <div className="grid place-items-center">
-          <Link
-            href="/sign-in"
-            // disabled={fieldError}
-            className={cn('underline', {
+          <Button
+            type="button"
+            onClick={() => router.push('/sign-in')}
+            disabled={completedSteps !== 3}
+            className={cn('disabled:bg-slate-500 text-white', {
               hidden: formStep !== 2,
             })}
           >
             login
-          </Link>
+          </Button>
         </div>
       </Form>
     </div>

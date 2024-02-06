@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 export default function Signup() {
   return (
     <div className="">
-      <Card className=" w-[650px]">
+      <Card className="min-h-[500px] w-[650px]">
         <CardHeader className="text-center">
           <CardTitle>Register</CardTitle>
           <CardDescription>Start the journey with us today.</CardDescription>

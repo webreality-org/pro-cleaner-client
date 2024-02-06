@@ -49,15 +49,12 @@
 
 } */
 
-
-
 .checkbox-wrapper-37 .checkbox-box {
   fill: #eef0ee;
   stroke: #bcc5c6;
 
   stroke-dashoffset: 800;
-  transition: stroke-dashoffset  0.9s ease-in-out ;
-  
+  transition: stroke-dashoffset 0.9s ease-in-out;
 }
 
 .checkbox-wrapper-37 .checkbox-tick {
@@ -70,12 +67,10 @@
 .checkbox-wrapper-37 input[type='checkbox']:checked + .terms-label .checkbox-box,
 .checkbox-wrapper-37 input[type='checkbox']:checked + .terms-label .checkbox-tick {
   stroke-dashoffset: 0;
-
 }
 .checkbox-box-checked {
   stroke: #18d2e7 !important;
   stroke-dasharray: 800 !important;
-
 }
 /* .checkbox-wrapper-37 .checkbox-box {
   fill: #eef0ee;
@@ -151,4 +146,3 @@
   stroke: #18d2e7 !important;
 
 } */
-

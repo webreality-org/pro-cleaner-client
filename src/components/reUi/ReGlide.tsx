@@ -1,4 +1,6 @@
+'use client';
 import { motion } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
 import { ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
@@ -10,6 +12,11 @@ interface ReGlideProps {
 }
 
 export const ReGlide = ({ formStep = 0, index = 0, children }: ReGlideProps) => {
+  const searchParams = useSearchParams();
+  const search = searchParams.get('fs');
+  if (search === '2') {
+    formStep = parseInt(search);
+  }
   let translateX = -(formStep * 100);
 
   if (index !== 0) {

@@ -2,14 +2,14 @@ import { ReactNode } from 'react';
 
 import { BADGE_CRITERIA } from '@/constants';
 
-export interface SearchParamsProps {
-  searchParams: { [key: string]: string | undefined };
-}
+export type TSearchParamsProps = {
+  searchParams?: { [key: string]: string | undefined };
+};
 
-export interface URLProps {
+export type TURLProps = {
   params: { id: string };
   searchParams: { [key: string]: string | undefined };
-}
+};
 
 export interface BadgeCounts {
   GOLD: number;
