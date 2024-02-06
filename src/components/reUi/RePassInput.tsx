@@ -128,7 +128,7 @@ const RePassInput = ({
                 )}
               </div>
             </FormControl>
-            <FormDescription>this is password</FormDescription>
+            {/* <FormDescription>this is password</FormDescription> */}
             {isValidationDrop && isInputFocused && (
               <PasswordValidator validationRules={validationRules} />
             )}

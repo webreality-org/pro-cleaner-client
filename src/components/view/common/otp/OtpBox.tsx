@@ -133,7 +133,7 @@ const OtpBox = () => {
 
   return (
     <div>
-      <div className="my-4 flex items-center justify-between gap-1 rounded-md border p-2 400:p-4  sm:p-5">
+      <div className="flex-center my-4 justify-between gap-1 rounded-md border p-2 400:p-4  sm:p-5">
         {otp.map((value, index) => (
           <input
             key={index}

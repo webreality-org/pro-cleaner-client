@@ -1,0 +1,34 @@
+import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
+
+import { cn } from '@/lib/utils';
+
+interface ReGlideProps {
+  children: ReactNode;
+  index: number;
+  formStep: number;
+}
+
+export const ReGlide = ({ formStep = 0, index = 0, children }: ReGlideProps) => {
+  let translateX = -(formStep * 100);
+
+  if (index !== 0) {
+    translateX = index * 100 - formStep * 100;
+  }
+
+  return (
+    <motion.div
+      className={cn('space-y-3', {
+        hidden: formStep !== index,
+      })}
+      animate={{
+        translateX: `${translateX}%`,
+      }}
+      transition={{
+        ease: 'easeInOut',
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};

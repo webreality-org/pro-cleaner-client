@@ -1,4 +1,4 @@
-.checkbox-wrapper-37 .checkbox-box {
+/* .checkbox-wrapper-37 .checkbox-box {
   fill: #eef0ee;
   stroke: #bcc5c6;
 
@@ -6,7 +6,6 @@
   stroke-linecap: square;
 
 
-  /* stroke-dashoffset: 800; */
   transition:
     stroke-dashoffset 0.5s ease-in,
     stroke-dasharray 1.2s ease-out;
@@ -27,14 +26,37 @@
   stroke-dashoffset: 0;
   stroke: #29d6e5 !important;
   stroke-dasharray: 800 !important;
-}
+} */
 
 /* .checkbox-wrapper-37 .checkbox-box {
+    fill: url(#gradient);
+    stroke: #0ba6c2; 
+    stroke-width: 50;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    transition: stroke-dashoffset 0.4s ease-in, fill 0.4s ease-in, stroke 0.4s ease-in;
+  }
+.checkbox-wrapper-37 .checkbox-tick {
+  stroke: #1491a7;
+  stroke-dasharray: 172;
+  stroke-dashoffset: 172;
+  transition: stroke-dashoffset 0.8s ease-in-out;
+}
+
+.checkbox-wrapper-37 input[type='checkbox']:checked + .terms-label .checkbox-box,
+.checkbox-wrapper-37 input[type='checkbox']:checked + .terms-label .checkbox-tick {
+  stroke-dashoffset: 0;
+
+} */
+
+
+
+.checkbox-wrapper-37 .checkbox-box {
   fill: #eef0ee;
   stroke: #bcc5c6;
 
   stroke-dashoffset: 800;
-  transition: stroke-dashoffset  0.9s ease-in-out;
+  transition: stroke-dashoffset  0.9s ease-in-out ;
   
 }
 
@@ -54,7 +76,7 @@
   stroke: #18d2e7 !important;
   stroke-dasharray: 800 !important;
 
-} */
+}
 /* .checkbox-wrapper-37 .checkbox-box {
   fill: #eef0ee;
   stroke: #bcc5c6;
@@ -129,3 +151,4 @@
   stroke: #18d2e7 !important;
 
 } */
+

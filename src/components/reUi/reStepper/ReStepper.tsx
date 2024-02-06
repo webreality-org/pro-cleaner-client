@@ -6,7 +6,7 @@ type TStepperProps = {
   steps: string[];
 };
 
-const Stepper = ({ currentStep, completedSteps = 0, steps = [] }: TStepperProps) => {
+const ReStepper = ({ currentStep, completedSteps = 0, steps = [] }: TStepperProps) => {
   return (
     <div className="flex justify-between">
       {steps.map((step, i) => (
@@ -24,4 +24,4 @@ const Stepper = ({ currentStep, completedSteps = 0, steps = [] }: TStepperProps)
   );
 };
 
-export { Stepper };
+export { ReStepper };

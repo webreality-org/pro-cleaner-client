@@ -1,16 +1,17 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Step1 from './Step1';
 
 import { ReButton } from '@/components/reUi/ReButton';
+import { ReGlide } from '@/components/reUi/ReGlide';
 import RePassInput from '@/components/reUi/RePassInput';
-import { Stepper } from '@/components/reUi/ReStepper';
+import { ReStepper } from '@/components/reUi/reStepper/ReStepper';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { OtpVerification } from '@/components/view/common/otp/OtpVerification';
@@ -25,7 +26,7 @@ const SignupForm = () => {
   const [formStep, setFormStep] = useState(0);
   const [passwordError, setPasswordError] = useState(false);
   const [fieldError, setFieldError] = useState(false);
-  const steps = ['Info', 'Password', 'Verify'];
+  const steps = ['Info', 'Password', 'Verify', 'confirm'];
   const defaultValues = {
     confirmPassword: '',
     email: '',
@@ -80,53 +81,29 @@ const SignupForm = () => {
 
   return (
     <div className="p-2">
-      <Stepper currentStep={formStep} steps={steps} completedSteps={completedSteps} />
+      <ReStepper currentStep={formStep} steps={steps} completedSteps={completedSteps} />
       <Form {...form}>
-        <form onSubmit={handleSubmit(onSubmit)} className="relative space-y-3 overflow-x-hidden">
-          <motion.div
-            className={cn('space-y-3', {})}
-            animate={{
-              translateX: `-${formStep * 100}%`,
-            }}
-            transition={{
-              ease: 'easeInOut',
-            }}
-          >
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex min-h-[450px] flex-col justify-between space-y-3 overflow-x-hidden"
+        >
+          <ReGlide index={0} formStep={formStep}>
             <Step1 />
-          </motion.div>
-          <motion.div
-            className={cn('space-y-3 absolute top-0 left-0 right-0', {
-              hidden: formStep === 0,
-            })}
-            animate={{
-              translateX: `${100 - formStep * 100}%`,
-            }}
-            transition={{
-              ease: 'easeInOut',
-            }}
-          >
-            {/* password */}
+          </ReGlide>
+          <ReGlide index={1} formStep={formStep}>
             <RePassInput />
-            {/* <RePassInput isValidationDrop /> */}
-            {/* confirm password */}
+
             <RePassInput
               name="confirmPassword"
               disabled={watch('password') === '' || passwordError}
             />
-          </motion.div>
-          <motion.div
-            className={cn('space-y-3 absolute top-0 left-0 right-0', {
-              hidden: formStep !== 2,
-            })}
-            animate={{
-              translateX: `${200 - formStep * 100}%`,
-            }}
-            transition={{
-              ease: 'easeInOut',
-            }}
-          >
+          </ReGlide>
+          <ReGlide index={2} formStep={formStep}>
             <OtpVerification />
-          </motion.div>
+          </ReGlide>
+          <ReGlide index={3} formStep={formStep}>
+            <OtpVerification />
+          </ReGlide>
 
           <div className="">
             <div
@@ -140,7 +117,8 @@ const SignupForm = () => {
                 className={cn(
                   'disabled:opacity-40 disabled:text-white text-typo-50 bg-primary-500 ',
                   {
-                    hidden: formStep === 1 || formStep === 2,
+                    // hidden: formStep === 1,
+                    hidden: formStep !== 0,
                   }
                 )}
                 onClick={() => {
@@ -171,22 +149,23 @@ const SignupForm = () => {
                 type="submit"
                 disabled={fieldError}
                 className={cn('text-typo-50 bg-primary-400 ', {
-                  hidden: formStep === 2 || formStep === 0,
+                  hidden: formStep !== 1,
                 })}
               />
-
-              {/* <Button
-                type="submit"
-                disabled={fieldError}
-                className={cn('text-typo-50 bg-primary-400 ', {
-                  hidden: formStep === 2 || formStep === 0,
-                })}
-              >
-                submit
-              </Button> */}
             </div>
           </div>
         </form>
+        <div className="grid place-items-center">
+          <Link
+            href="/sign-in"
+            // disabled={fieldError}
+            className={cn('underline', {
+              hidden: formStep !== 2,
+            })}
+          >
+            login
+          </Link>
+        </div>
       </Form>
     </div>
   );
