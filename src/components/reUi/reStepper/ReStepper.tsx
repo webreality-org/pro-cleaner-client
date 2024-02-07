@@ -1,13 +1,17 @@
+import { completedStepsState } from '@/redux/features/shared/StepperSlices';
+import { useAppSelector } from '@/redux/hooks';
 import './stepper.css';
 
 type TStepperProps = {
   currentStep: number;
-  completedSteps?: number;
+
   steps: string[];
   setFormStep: (value: number) => void;
 };
 
-const ReStepper = ({ currentStep, completedSteps = 0, steps = [], setFormStep }: TStepperProps) => {
+const ReStepper = ({ currentStep, steps = [], setFormStep }: TStepperProps) => {
+  const completedSteps = useAppSelector(completedStepsState);
+
   const handleStepClick = (index: number) => () => {
     if (currentStep === 2) return;
     if (completedSteps >= index) {

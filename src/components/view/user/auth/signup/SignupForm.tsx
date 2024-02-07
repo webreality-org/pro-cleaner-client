@@ -6,49 +6,38 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import { defaultValues, stepOneFields, steps } from './SignupConstants';
 import Step1 from './Step1';
 
 import { ReButton } from '@/components/reUi/ReButton';
 import { ReGlide } from '@/components/reUi/ReGlide';
 import RePassInput from '@/components/reUi/RePassInput';
 import { ReStepper } from '@/components/reUi/reStepper/ReStepper';
-import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { OtpVerification } from '@/components/view/common/otp/OtpVerification';
-import { cn, formUrlQuery } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { TUserRegisterInput, userRegisterSchema } from '@/lib/validations/userAuth.validations';
-import { useAppDispatch } from '@/redux/hooks';
-import { setTimerOn } from '@/redux/slices/optVerifySlices/otpTimerSlice';
+import { setTimerOn } from '@/redux/features/optVerify/otpTimerSlice';
+import {
+  completedStepsState,
+  decrementCompletedSteps,
+  incrementCompletedSteps,
+} from '@/redux/features/shared/StepperSlices';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
 const SignupForm = () => {
-  const [formStep, setFormStep] = useState(0);
-  const searchParams = useSearchParams();
+  // navigation
+  const search = useSearchParams().get('fs');
   const router = useRouter();
-
-  const handleUpdateParams = (value: string) => {
-    const newUrl = formUrlQuery({
-      params: searchParams.toString(),
-      key: 'fs',
-      value,
-    });
-
-    router.push(newUrl, { scroll: false });
-  };
-
+  // redux
   const dispatch = useAppDispatch();
-  const [completedSteps, setCompletedSteps] = useState(0);
-
+  const completedSteps = useAppSelector(completedStepsState);
+  // local state
   const [passwordError, setPasswordError] = useState(false);
+  const [formStep, setFormStep] = useState(0);
   const [fieldError, setFieldError] = useState(false);
-  const steps = ['Info', 'Password', 'Verify'];
-  const defaultValues = {
-    confirmPassword: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    password: '',
-    phoneNumber: '',
-  };
+
+  // react-hook-form
   const form = useForm<TUserRegisterInput>({
     resolver: zodResolver(userRegisterSchema),
     defaultValues,
@@ -56,81 +45,82 @@ const SignupForm = () => {
   });
   const { getFieldState, handleSubmit, watch, formState } = form;
   const { isSubmitting } = formState;
-  const emailState = getFieldState('email');
+
+  // useEffects
   useEffect(() => {
     const passwordState = getFieldState('password');
     const confirmPasswordState = getFieldState('confirmPassword');
-    const firstNameState = getFieldState('firstName');
-    const lastNameState = getFieldState('lastName');
-    const phoneNumberState = getFieldState('phoneNumber');
     if (formStep === 0) {
-      const isStep0Invalid =
-        !emailState.isDirty ||
-        emailState.invalid ||
-        !firstNameState.isDirty ||
-        firstNameState.invalid ||
-        !lastNameState.isDirty ||
-        lastNameState.invalid ||
-        !phoneNumberState.isDirty ||
-        phoneNumberState.invalid;
+      const isStep0Invalid = stepOneFields.some((name) => {
+        const fieldState = getFieldState(name as keyof typeof defaultValues);
+        return !fieldState.isDirty || fieldState.invalid;
+      });
 
       setFieldError(isStep0Invalid);
     }
-
     if (formStep === 1) {
       setFieldError(!confirmPasswordState.isDirty || confirmPasswordState.invalid || passwordError);
     }
-
     setPasswordError(passwordState.isDirty && passwordState.invalid);
-  }, [setPasswordError, getFieldState, formStep, setFieldError, emailState, passwordError]);
+    if (search === '2') {
+      setFormStep(parseInt(search));
+    }
+  }, [getFieldState, formStep, passwordError, search, formState]);
 
+  // local constants
+  const components = [
+    {
+      component: <Step1 />,
+    },
+    {
+      component: (
+        <>
+          <RePassInput isValidationDrop />
+          <RePassInput
+            name="confirmPassword"
+            disabled={watch('password') === '' || passwordError}
+          />
+        </>
+      ),
+    },
+    {
+      component: <OtpVerification />,
+    },
+  ];
+
+  // handlers
+  const nextHandler = () => {
+    setFormStep((prev) => prev + 1);
+    dispatch(incrementCompletedSteps());
+  };
+  const previousHandler = () => {
+    setFormStep((prev) => prev - 1);
+    dispatch(decrementCompletedSteps());
+  };
+
+  // submit handler
   const onSubmit: SubmitHandler<TUserRegisterInput> = async (data) => {
     if (data) {
       setFormStep((prev) => prev + 1);
-      setCompletedSteps((prev) => prev + 1);
+      dispatch(incrementCompletedSteps());
       dispatch(setTimerOn(true));
     }
     console.log(data);
   };
-  useEffect(() => {
-    const search = searchParams.get('fs');
-    console.log('🌼 🔥🔥 ReGlide 🔥🔥 search🌼', search);
-
-    if (search === '2') {
-      setFormStep(parseInt(search));
-    }
-  }, [searchParams]);
 
   return (
     <div className="p-2">
-      <ReStepper
-        currentStep={formStep}
-        setFormStep={setFormStep}
-        steps={steps}
-        completedSteps={completedSteps}
-      />
+      <ReStepper currentStep={formStep} setFormStep={setFormStep} steps={steps} />
       <Form {...form}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex min-h-[450px] flex-col justify-between space-y-3 overflow-x-hidden"
+          className="flex-col-between min-h-[450px]  space-y-3 overflow-x-hidden"
         >
-          <ReGlide index={0} formStep={formStep}>
-            <Step1 />
-          </ReGlide>
-          <ReGlide index={1} formStep={formStep}>
-            <RePassInput />
-
-            <RePassInput
-              name="confirmPassword"
-              disabled={watch('password') === '' || passwordError}
-            />
-          </ReGlide>
-          <ReGlide index={2} formStep={formStep}>
-            <OtpVerification
-              setCompletedSteps={setCompletedSteps}
-              completedSteps={completedSteps}
-            />
-          </ReGlide>
+          {components.map((each, index) => (
+            <ReGlide key={index} index={index} formStep={formStep}>
+              {each.component}
+            </ReGlide>
+          ))}
 
           <div className="">
             <div
@@ -138,63 +128,49 @@ const SignupForm = () => {
                 'grid place-items-end': formStep === 0,
               })}
             >
-              <Button
-                type="button"
+              <ReButton
                 disabled={fieldError}
-                className={cn(
-                  'disabled:opacity-40 disabled:text-white text-typo-50 bg-primary-500 ',
-                  {
-                    // hidden: formStep === 1,
-                    hidden: formStep !== 0 || searchParams.get('fs') === '2',
-                  }
-                )}
-                onClick={() => {
-                  setFormStep((prev) => prev + 1);
-                  setCompletedSteps((prev) => prev + 1);
-
-                  handleUpdateParams((formStep + 1).toString());
-                }}
+                className={cn('disabled', {
+                  hidden: formStep !== 0,
+                })}
+                onClick={nextHandler}
               >
                 Next
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              </ReButton>
             </div>
             <div className={'flex justify-between '}>
-              <Button
-                type="button"
+              <ReButton
                 className={cn('text-typo-50 bg-primary-400 ', {
                   hidden: formStep !== 1,
                 })}
-                onClick={() => {
-                  setFormStep((prev) => prev - 1);
-                  setCompletedSteps((prev) => prev - 1);
-                }}
+                onClick={previousHandler}
               >
                 Previous
-              </Button>
+              </ReButton>
               <ReButton
-                text="submit"
                 isSubmitting={isSubmitting}
                 type="submit"
                 disabled={fieldError}
                 className={cn('text-typo-50 bg-primary-400 ', {
                   hidden: formStep !== 1,
                 })}
-              />
+              >
+                submit
+              </ReButton>
             </div>
           </div>
         </form>
         <div className="grid place-items-center">
-          <Button
-            type="button"
+          <ReButton
             onClick={() => router.push('/sign-in')}
             disabled={completedSteps !== 3}
-            className={cn('disabled:bg-slate-500 text-white', {
+            className={cn('disabled', {
               hidden: formStep !== 2,
             })}
           >
             login
-          </Button>
+          </ReButton>
         </div>
       </Form>
     </div>

@@ -97,9 +97,18 @@ body {
   .flex-between {
     @apply flex justify-between items-center;
   }
+  .flex-col-center {
+    @apply flex flex-col justify-center items-center;
+  }
+  .flex-col-between {
+    @apply flex flex-col justify-between ;
+  }
 
   .flex-start {
     @apply flex justify-start items-center;
+  }
+  .disabled {
+    @apply disabled:cursor-not-allowed disabled:opacity-40 disabled:text-white text-typo-50 bg-primary-500;
   }
 
   .card-wrapper {
@@ -260,3 +269,4 @@ input::-webkit-inner-spin-button {
 .shadow-custom-reset-password {
   box-shadow: rgba(60, 203, 255, 0.837) 0px 1px 8px;
 }
+

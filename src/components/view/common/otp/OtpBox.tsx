@@ -3,18 +3,19 @@
 import { useSearchParams } from 'next/navigation';
 import { ChangeEvent, ClipboardEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 
-import { OtpBoxProps } from './OtpVerification';
-
 import { useToast } from '@/components/ui/use-toast';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { counterState, setCounter } from '@/redux/slices/optVerifySlices/otpCounterSlice';
-import { setTimerOn, timerState } from '@/redux/slices/optVerifySlices/otpTimerSlice';
+import { counterState, setCounter } from '@/redux/features/optVerify/otpCounterSlice';
+import { setTimerOn, timerState } from '@/redux/features/optVerify/otpTimerSlice';
+import { completedStepsState, setCompletedSteps } from '@/redux/features/shared/StepperSlices';
 
-const OtpBox = ({ setCompletedSteps, completedSteps }: OtpBoxProps) => {
+const OtpBox = () => {
   const searchParams = useSearchParams();
+  const dispatch = useAppDispatch();
+  const completedSteps = useAppSelector(completedStepsState);
 
   const { toast } = useToast();
-  const dispatch = useAppDispatch();
+
   const timerOn = useAppSelector(timerState);
   const counter = useAppSelector(counterState);
 
@@ -126,12 +127,12 @@ const OtpBox = ({ setCompletedSteps, completedSteps }: OtpBoxProps) => {
   useEffect(() => {
     const search = searchParams.get('fs');
     if (search === '2') {
-      setCompletedSteps(2);
+      dispatch(setCompletedSteps(2));
     }
-  }, [searchParams, setCompletedSteps]);
+  }, [searchParams, dispatch]);
   // verify email handler
   const handleVerifyEmail = () => {
-    setCompletedSteps(3);
+    dispatch(setCompletedSteps(3));
     setOtp(['', '', '', '']);
     if (!email) {
       toast({
