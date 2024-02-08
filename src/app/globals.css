@@ -101,7 +101,7 @@ body {
     @apply flex flex-col justify-center items-center;
   }
   .flex-col-between {
-    @apply flex flex-col justify-between ;
+    @apply flex flex-col justify-between;
   }
 
   .flex-start {
@@ -269,4 +269,3 @@ input::-webkit-inner-spin-button {
 .shadow-custom-reset-password {
   box-shadow: rgba(60, 203, 255, 0.837) 0px 1px 8px;
 }
-
