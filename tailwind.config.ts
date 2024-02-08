@@ -121,6 +121,8 @@ module.exports = {
         'hero-img-5': "url('/assets/images/bg-5.jpg')",
         'hero-img-6': "url('/assets/images/bg-6.jpg')",
         'hero-img-7': "url('/assets/images/bg-7.jpg')",
+        'hero-img-8': "url('/assets/images/whyChooseUs.jpg')",
+        'hero-img-9': "url('/assets/images/statsBg.jpg')",
       },
       screens: {
         500: '500px',

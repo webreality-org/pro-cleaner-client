@@ -20,8 +20,8 @@ const TopNav = () => {
             alt=""
           />
         </Link>
-        <div className="flex flex-col py-3 lg:flex-row">
-          <div className="hidden gap-3 lg:flex xl:gap-8 2xl:gap-24 ">
+        <div className="flex flex-col py-3 lg:flex-row ">
+          <div className="hidden gap-3 lg:flex xl:gap-8 2xl:gap-24">
             {topHeaderItems.map((item, i) => (
               <ReIconPlus key={i} items={item} />
             ))}
