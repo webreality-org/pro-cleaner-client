@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 import { cn } from '@/lib/utils';
 

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
-import { Signin } from '@/components/view/user/auth/signin/Signin';
+import AllSteps from '@/components/view/user/auth/signin/AllSteps';
+
 export const metadata: Metadata = {
   title: 'Pc-signin',
   description: 'get clean start',
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 const SigninPage = () => {
   return (
     <div>
-      <Signin />
+      <AllSteps />
     </div>
   );
 };
