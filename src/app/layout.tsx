@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     'A community-driven platform for cleaning services. Find the best cleaning services in your area.',
   icons: {
-    icon: '/assets/images/site-logo.svg',
+    icon: './favicon.ico',
   },
 };
 //

@@ -6,15 +6,15 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import { OtpStep } from './OtpStep';
 import { defaultValues, stepOneFields, steps } from './SignupConstants';
-import Step1 from './Step1';
+import UserInfoStep from './UserInfoStep';
 
 import { ReButton } from '@/components/reUi/ReButton';
 import { ReGlide } from '@/components/reUi/ReGlide';
 import RePassInput from '@/components/reUi/RePassInput';
 import { ReStepper } from '@/components/reUi/reStepper/ReStepper';
 import { Form } from '@/components/ui/form';
-import { OtpVerification } from '@/components/view/common/otp/OtpVerification';
 import { cn } from '@/lib/utils';
 import { TUserRegisterInput, userRegisterSchema } from '@/lib/validations/userAuth.validations';
 import { setTimerOn } from '@/redux/features/optVerify/otpTimerSlice';
@@ -27,7 +27,8 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
 const SignupForm = () => {
   // navigation
-  const search = useSearchParams().get('fs');
+  const searchParams = useSearchParams();
+  const search = searchParams.get('fs');
   const router = useRouter();
   // redux
   const dispatch = useAppDispatch();
@@ -36,6 +37,12 @@ const SignupForm = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [formStep, setFormStep] = useState(0);
   const [fieldError, setFieldError] = useState(false);
+
+  function updateUrl() {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('fs', (formStep + 1).toString());
+    window.history.pushState(null, '', `?${params.toString()}`);
+  }
 
   // react-hook-form
   const form = useForm<TUserRegisterInput>({
@@ -70,12 +77,13 @@ const SignupForm = () => {
   // local constants
   const components = [
     {
-      component: <Step1 />,
+      component: <UserInfoStep />,
     },
     {
       component: (
         <>
-          <RePassInput isValidationDrop />
+          <RePassInput />
+          {/* <RePassInput isValidationDrop /> */}
           <RePassInput
             name="confirmPassword"
             disabled={watch('password') === '' || passwordError}
@@ -84,7 +92,7 @@ const SignupForm = () => {
       ),
     },
     {
-      component: <OtpVerification />,
+      component: <OtpStep />,
     },
   ];
 
@@ -92,6 +100,7 @@ const SignupForm = () => {
   const nextHandler = () => {
     setFormStep((prev) => prev + 1);
     dispatch(incrementCompletedSteps());
+    updateUrl();
   };
   const previousHandler = () => {
     setFormStep((prev) => prev - 1);
@@ -102,6 +111,7 @@ const SignupForm = () => {
   const onSubmit: SubmitHandler<TUserRegisterInput> = async (data) => {
     if (data) {
       setFormStep((prev) => prev + 1);
+      updateUrl();
       dispatch(incrementCompletedSteps());
       dispatch(setTimerOn(true));
     }
@@ -122,43 +132,41 @@ const SignupForm = () => {
             </ReGlide>
           ))}
 
-          <div className="">
-            <div
-              className={cn({
-                'grid place-items-end': formStep === 0,
+          <div
+            className={cn({
+              'grid place-items-end': formStep === 0,
+            })}
+          >
+            <ReButton
+              disabled={fieldError}
+              className={cn('disabled', {
+                hidden: formStep !== 0,
+              })}
+              onClick={nextHandler}
+            >
+              Next
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </ReButton>
+          </div>
+          <div className={'flex justify-between '}>
+            <ReButton
+              className={cn('text-typo-50 bg-primary-400 ', {
+                hidden: formStep !== 1,
+              })}
+              onClick={previousHandler}
+            >
+              Previous
+            </ReButton>
+            <ReButton
+              isSubmitting={isSubmitting}
+              type="submit"
+              disabled={fieldError}
+              className={cn('text-typo-50 bg-primary-400 ', {
+                hidden: formStep !== 1,
               })}
             >
-              <ReButton
-                disabled={fieldError}
-                className={cn('disabled', {
-                  hidden: formStep !== 0,
-                })}
-                onClick={nextHandler}
-              >
-                Next
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </ReButton>
-            </div>
-            <div className={'flex justify-between '}>
-              <ReButton
-                className={cn('text-typo-50 bg-primary-400 ', {
-                  hidden: formStep !== 1,
-                })}
-                onClick={previousHandler}
-              >
-                Previous
-              </ReButton>
-              <ReButton
-                isSubmitting={isSubmitting}
-                type="submit"
-                disabled={fieldError}
-                className={cn('text-typo-50 bg-primary-400 ', {
-                  hidden: formStep !== 1,
-                })}
-              >
-                submit
-              </ReButton>
-            </div>
+              submit
+            </ReButton>
           </div>
         </form>
         <div className="grid place-items-center">

@@ -1,9 +1,8 @@
 'use client';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import { SearchParamsProps } from '@/types';
-
-export default function Home({ searchParams }: SearchParamsProps) {
+export default function Home() {
   const [isInputHidden, setIsInputHidden] = useState(false);
 
   useEffect(() => {
@@ -65,7 +64,21 @@ export default function Home({ searchParams }: SearchParamsProps) {
             Discover Hotels, Resorts, and many living facilities in your favorite places.
           </p>
         </div>
-        <div className="h-36 border bg-dark-100  text-white">100</div>
+
+        {/* <div className="relative h-[70vh]"> */}
+        {/* <Image
+          src="https://images.unsplash.com/photo-1589405858862-2ac9cbb41321?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="mount"
+          width={700}
+          height={475}
+          sizes="100vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+        /> */}
+        {/* </div> */}
+        {/* <div className="h-36 border bg-dark-100  text-white">100</div>
         <div className="h-36 border bg-dark-200  text-white">200</div>
 
         <div className="h-48 border bg-dark-300  text-white">300</div>
@@ -78,7 +91,7 @@ export default function Home({ searchParams }: SearchParamsProps) {
         <div className="h-48 border bg-dark-800  text-white">800</div>
 
         <div className="h-36 border bg-dark-900  text-white">900</div>
-        <div className="h-36 border bg-dark-950  text-white">950</div>
+        <div className="h-36 border bg-dark-950  text-white">950</div> */}
       </div>
     </>
   );

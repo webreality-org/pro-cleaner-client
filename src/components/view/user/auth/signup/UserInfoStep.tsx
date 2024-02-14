@@ -32,9 +32,7 @@ const inputFields = [
   },
 ];
 
-// Inside your component, use the map function to generate ReInput components
-
-const Step1 = () => {
+const UserInfoStep = () => {
   return (
     <div>
       {inputFields.map((field, index) => (
@@ -51,4 +49,4 @@ const Step1 = () => {
   );
 };
 
-export default Step1;
+export default UserInfoStep;

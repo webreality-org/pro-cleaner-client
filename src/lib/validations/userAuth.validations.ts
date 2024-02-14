@@ -34,8 +34,8 @@ export const userRegisterSchema = z
       })
       .min(6, 'Password too short - should be 6 chars minimum')
       .max(100, 'Password too long - should be 100 chars maximum')
-      .trim()
-      .regex(passwordRegex, 'Invalid password format'),
+      .trim(),
+    // .regex(passwordRegex, 'Invalid password format'),
     confirmPassword: z
       .string({
         required_error: 'Confirm password is required',

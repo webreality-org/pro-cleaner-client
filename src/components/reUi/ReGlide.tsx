@@ -11,9 +11,10 @@ interface ReGlideProps {
   formStep: number;
 }
 
-export const ReGlide = ({ formStep = 0, index = 0, children }: ReGlideProps) => {
-  const searchParams = useSearchParams();
-  const search = searchParams.get('fs');
+export const ReGlide = ({ formStep, index = 0, children }: ReGlideProps) => {
+  const search = useSearchParams().get('fs');
+  // const search = searchParams.get('fs');
+  // const formStep = search ? parseInt(search) : 0;
   if (search === '2') {
     formStep = parseInt(search);
   }

@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 import { Button } from '../ui/button';
 
@@ -13,27 +13,21 @@ type TButton = {
   onClick?: () => void;
   disabled?: boolean;
   children?: ReactNode;
-};
+} & ComponentProps<typeof Button>;
 
 export function ReButton({
   isSubmitting = false,
-  onClick,
   type = 'button',
   className,
-  disabled = false,
   children,
+  ...props
 }: TButton) {
   const defaultClassName = cn('bg-green-500 text-black', {
     'bg-sky-700 text-white': children === 'Edit',
     'bg-red-500 text-white': children === 'Delete',
   });
   return (
-    <Button
-      onClick={onClick}
-      type={type}
-      disabled={disabled}
-      className={className || defaultClassName}
-    >
+    <Button type={type} className={className || defaultClassName} {...props}>
       {isSubmitting ? `${children} loading..` : children}
     </Button>
   );

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
-import Signup from '@/components/view/user/auth/signup/Signup';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import SignupForm from '@/components/view/user/auth/signup/SignupForm';
 
 export const metadata: Metadata = {
   title: 'Pc-signup',
@@ -8,7 +9,17 @@ export const metadata: Metadata = {
 };
 
 const SignupPage = () => {
-  return <Signup />;
+  return (
+    <Card className="min-h-[500px] w-[650px]">
+      <CardHeader className="text-center">
+        <CardTitle>Register</CardTitle>
+        <CardDescription>Start the journey with us today.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <SignupForm />
+      </CardContent>
+    </Card>
+  );
 };
 
 export default SignupPage;

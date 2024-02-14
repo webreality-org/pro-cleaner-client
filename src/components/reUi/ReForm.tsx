@@ -2,39 +2,44 @@
 
 import { DevTool } from '@hookform/devtools';
 import { ReactElement, ReactNode } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FieldValues, Resolver, SubmitHandler, useForm } from 'react-hook-form';
 
 import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
 
 import { Form } from '@/components/ui/form';
+import { Prettify } from '@/types';
 
 export type FormConfig = {
-  defaultValues?: Record<string, any>;
-  resolver?: any;
-  mode?: 'onChange' | 'onBlur' | 'onSubmit' | 'onTouched' | 'all' | undefined;
+  defaultValues?: FieldValues;
+  resolver?: Resolver<FieldValues>;
+  mode?: 'onChange' | 'onBlur' | 'onSubmit' | 'onTouched' | 'all';
 };
 
-export type FormProps = {
+export type FormProps<T extends FieldValues> = {
   children?: ReactElement | ReactNode;
-  submitHandler: SubmitHandler<any>;
+  submitHandler: SubmitHandler<T>;
 } & FormConfig;
 
-function ReForm({ children, submitHandler, defaultValues, resolver, mode = 'onBlur' }: FormProps) {
+function ReForm<T extends FieldValues>({
+  children,
+  submitHandler,
+  defaultValues,
+  resolver,
+  mode = 'onBlur',
+}: FormProps<T>) {
   const formConfig: FormConfig = {};
   formConfig.mode = mode;
+  // type FormPropsType = Prettify<FormProps<T>>;
 
   if (defaultValues) formConfig.defaultValues = defaultValues;
   if (resolver) formConfig.resolver = resolver;
 
   const form = useForm(formConfig);
 
-  const { handleSubmit, reset } = form;
+  const { handleSubmit } = form;
 
-  const onSubmit: SubmitHandler<any> = (data) => {
-    console.log('🌼 🔥🔥 ReForm 🔥🔥 data🌼', data);
-
-    submitHandler(data);
-    // reset();
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    submitHandler(data as T);
   };
   // useEffect(() => reset(defaultValues), [defaultValues, reset, form]);
   return (

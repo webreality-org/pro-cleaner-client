@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import Navbar from '@/components/view/shared/navbars/navbar/Navbar';
 import TopNav from '@/components/view/shared/navbars/TopNav/TopNav';

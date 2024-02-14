@@ -1,5 +1,4 @@
 {
-
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "[javascript]": {
@@ -37,6 +36,6 @@
 
   "yaml.schemas": {
     "openapi:v3": "file:///e%3A/Code%20house/p%20Hero-6/level-2/Assignment/Assignment-3-noSql/noSql-hamba-hut/test.yaml"
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
-                   

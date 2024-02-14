@@ -18,11 +18,14 @@ import './check.css';
 
 export type TInputs = z.infer<typeof userLoginSchema>;
 
+const defaultValues = {
+  email: '',
+  password: '',
+  isValid: false,
+};
+type DefaultValues = typeof defaultValues;
+
 const SigninForm = () => {
-  const defaultValues = {
-    email: '',
-    password: '',
-  };
   const [isChecked, setIsChecked] = useState(false);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -31,7 +34,7 @@ const SigninForm = () => {
   const onSubmit: SubmitHandler<TInputs> = async (data) => {};
   return (
     <>
-      <ReForm
+      <ReForm<DefaultValues>
         submitHandler={onSubmit}
         resolver={zodResolver(userLoginSchema)}
         defaultValues={defaultValues}
@@ -80,13 +83,13 @@ const SigninForm = () => {
                   className={cn('checkbox-box', {
                     'checkbox-box-checked': isChecked,
                   })}
-                  stroke-width="50"
+                  strokeWidth="50"
                   mask="url(#path-1-inside-1_476_5-37)"
                 ></rect>
                 <path
                   className="checkbox-tick stroke-current"
                   d="M52 111.018L76.9867 136L149 64"
-                  stroke-width="25"
+                  strokeWidth="25"
                 ></path>
               </svg>
               <span className="label-text ml-2">keep me logged in</span>

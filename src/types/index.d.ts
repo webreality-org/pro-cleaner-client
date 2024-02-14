@@ -2,6 +2,10 @@ import { ReactNode } from 'react';
 
 import { BADGE_CRITERIA } from '@/constants';
 
+export type Prettify<T> = {
+  [K in keyof T]: T[K];
+};
+
 export type TSearchParamsProps = {
   searchParams?: { [key: string]: string | undefined };
 };
