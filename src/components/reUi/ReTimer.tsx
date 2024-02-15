@@ -4,11 +4,14 @@ import { counterState, setCounter } from '@/redux/features/optVerify/otpCounterS
 import { setTimerOn, timerState } from '@/redux/features/optVerify/otpTimerSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
-const Timer = () => {
+const ReTimer = ({ initialTime = 10 }: { initialTime?: number }) => {
   const timerOn = useAppSelector(timerState);
   const counter = useAppSelector(counterState);
   const dispatch = useAppDispatch();
-  // useEffect to handle the counter on
+
+  useEffect(() => {
+    dispatch(setCounter(initialTime));
+  }, [dispatch, initialTime]);
   useEffect(() => {
     if (timerOn) {
       const interval = setInterval(() => {
@@ -39,4 +42,4 @@ const Timer = () => {
   );
 };
 
-export default Timer;
+export default ReTimer;

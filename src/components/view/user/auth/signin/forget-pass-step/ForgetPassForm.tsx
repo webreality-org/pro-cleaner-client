@@ -13,7 +13,7 @@ const ForgetPassForm = () => {
     console.log('');
   };
   return (
-    <div>
+    <div className=" flex flex-col  ">
       <ReForm submitHandler={onSubmit}>
         <ReInput
           name="email"
@@ -22,15 +22,19 @@ const ForgetPassForm = () => {
           label="email"
           prefix={<MailIcon />}
         />
-        <ReButton type="submit">Submit</ReButton>
+        <div className="grid place-items-center">
+          <ReButton type="submit">Submit</ReButton>
+        </div>
       </ReForm>
-      <ReButton
-        onClick={() => {
-          dispatch(setFormStep(0));
-        }}
-      >
-        Back to login
-      </ReButton>
+      <div className="grid place-self-end">
+        <ReButton
+          onClick={() => {
+            dispatch(setFormStep(0));
+          }}
+        >
+          Back to login
+        </ReButton>
+      </div>
     </div>
   );
 };

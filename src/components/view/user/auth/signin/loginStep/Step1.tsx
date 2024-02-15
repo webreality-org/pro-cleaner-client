@@ -2,7 +2,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MailIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -13,6 +12,7 @@ import { ReCheckBox } from '@/components/reUi/ReCheckBox/ReCheckBox';
 import ReForm from '@/components/reUi/ReForm';
 import ReInput from '@/components/reUi/ReInput';
 import RePassInput from '@/components/reUi/RePassInput';
+import useToggle from '@/hooks/useToggle';
 import { userLoginSchema } from '@/lib/validations/userAuth.validations';
 import { setFormStep } from '@/redux/features/auth/signinStepSlices';
 import { useAppDispatch } from '@/redux/hooks';
@@ -28,15 +28,8 @@ type DefaultValues = typeof defaultValues;
 
 const Step1 = () => {
   const dispatch = useAppDispatch();
-  const [isChecked, setIsChecked] = useState(false);
-
-  const [isTermChecked, setIsTermChecked] = useState(false);
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-  const handleTermCheckboxChange = () => {
-    setIsTermChecked(!isTermChecked);
-  };
+  const [isChecked, toggleIsChecked] = useToggle();
+  const [isTermChecked, toggleIsTermChecked] = useToggle();
 
   const handleForgetPass = () => {
     dispatch(setFormStep(1));
@@ -63,14 +56,14 @@ const Step1 = () => {
           <div className="">
             <ReCheckBox
               id="remember-check"
-              handleCheckboxChange={handleCheckboxChange}
+              handleCheckboxChange={toggleIsChecked}
               isChecked={isChecked}
               label="remember me"
             />
 
             <ReCheckBox
               id="terms-check"
-              handleCheckboxChange={handleTermCheckboxChange}
+              handleCheckboxChange={toggleIsTermChecked}
               isChecked={isTermChecked}
               label="agree terms and policy"
             />

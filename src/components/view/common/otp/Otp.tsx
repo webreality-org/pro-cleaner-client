@@ -3,8 +3,9 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import Timer from '../../../reUi/ReTimer';
+
 import OtpBox from './OtpBox';
-import Timer from './Timer';
 
 import { ReButton } from '@/components/reUi/ReButton';
 import { useToast } from '@/components/ui/use-toast';
@@ -72,7 +73,7 @@ const Otp = () => {
           >
             Resend
           </ReButton>
-          <Timer />
+          <Timer initialTime={20} />
         </div>
       </div>
       <div className="grid place-items-center">
