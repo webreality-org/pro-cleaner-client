@@ -1,17 +1,19 @@
-import Step1 from './Step1';
+import ResetMailForm from './ResetMailForm';
 
 import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-export const Signin = () => {
+const ResetMail = () => {
   return (
     <div className="">
       <CardHeader className="text-center">
-        <CardTitle>Sign In</CardTitle>
-        <CardDescription>Start the journey with us today.</CardDescription>
+        <CardTitle>Forget your pass ?</CardTitle>
+        <CardDescription>Start resetting.</CardDescription>
       </CardHeader>
       <CardContent>
-        <Step1 />
+        <ResetMailForm />
       </CardContent>
     </div>
   );
 };
+
+export default ResetMail;

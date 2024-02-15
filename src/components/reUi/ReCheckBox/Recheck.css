@@ -1,6 +1,4 @@
-
-
-.checkbox-wrapper-37 .checkbox-box {
+.checkbox-wrapper .checkbox-box {
   fill: #eef0ee;
   stroke: #bcc5c6;
 
@@ -8,15 +6,15 @@
   transition: stroke-dashoffset 0.9s ease-in-out;
 }
 
-.checkbox-wrapper-37 .checkbox-tick {
+.checkbox-wrapper .checkbox-tick {
   stroke: #1491a7;
   stroke-dasharray: 172;
   stroke-dashoffset: 172;
   transition: stroke-dashoffset 0.8s ease-in-out;
 }
 
-.checkbox-wrapper-37 input[type='checkbox']:checked + .terms-label .checkbox-box,
-.checkbox-wrapper-37 input[type='checkbox']:checked + .terms-label .checkbox-tick {
+.checkbox-wrapper input[type='checkbox']:checked + .terms-label .checkbox-box,
+.checkbox-wrapper input[type='checkbox']:checked + .terms-label .checkbox-tick {
   stroke-dashoffset: 0;
 }
 .checkbox-box-checked {

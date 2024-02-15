@@ -47,9 +47,9 @@ function ReForm<T extends FieldValues>({
       <form onSubmit={handleSubmit(onSubmit)} className="relative  space-y-3 overflow-x-hidden">
         {children}
       </form>
-      <NoSSRWrapper>
+      {/* <NoSSRWrapper>
         <DevTool control={form.control} />
-      </NoSSRWrapper>
+      </NoSSRWrapper> */}
     </Form>
   );
 }
