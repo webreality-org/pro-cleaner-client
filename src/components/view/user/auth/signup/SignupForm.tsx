@@ -11,7 +11,7 @@ import { defaultValues, stepOneFields, steps } from './SignupConstants';
 import UserInfoStep from './UserInfoStep';
 
 import { ReButton } from '@/components/reUi/ReButton';
-import { ReGlide } from '@/components/reUi/ReGlide';
+import { ReGlider } from '@/components/reUi/ReGlider';
 import RePassInput from '@/components/reUi/RePassInput';
 import { ReStepper } from '@/components/reUi/reStepper/ReStepper';
 import { Form } from '@/components/ui/form';
@@ -127,9 +127,9 @@ const SignupForm = () => {
           className="flex-col-between min-h-[450px]  space-y-3 overflow-x-hidden"
         >
           {components.map((each, index) => (
-            <ReGlide key={index} index={index} formStep={formStep}>
+            <ReGlider key={index} index={index} formStep={formStep}>
               {each.component}
-            </ReGlide>
+            </ReGlider>
           ))}
 
           <div

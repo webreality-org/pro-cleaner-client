@@ -7,7 +7,7 @@ import ForgetPass from './forget-pass-step/ForgetPass';
 import { Signin } from './loginStep/Signin';
 import ResetMail from './reset-mail-step/ResetMail';
 
-import { ReGlide } from '@/components/reUi/ReGlide';
+import { ReGlider } from '@/components/reUi/ReGlider';
 import { ReStepper } from '@/components/reUi/reStepper/ReStepper';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
@@ -52,9 +52,9 @@ const AllSteps = () => {
         </div>
 
         {components.map((each, index) => (
-          <ReGlide key={index} index={index} formStep={formStep}>
+          <ReGlider key={index} index={index} formStep={formStep}>
             {each.component}
-          </ReGlide>
+          </ReGlider>
         ))}
       </Card>
     </>
