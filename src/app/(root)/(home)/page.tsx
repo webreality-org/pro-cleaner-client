@@ -5,13 +5,19 @@ import WhyChooseUs from '../../../components/view/whyChooseUs/WhyChooseUs';
 import { SearchParamsProps } from '@/types';
 import Banner from '@/components/view/Banner/Banner';
 import Stats from '@/components/view/stats/Stats';
+import ContactUs from '@/components/view/ContactUs/ContactUs';
 
 export default function Home({ searchParams }: SearchParamsProps) {
   return (
     <>
+      {/* banner section */}
       <Banner />
+      {/* why choose us section */}
       <WhyChooseUs />
+      {/* stats section */}
       <Stats />
+      {/* contact us section */}
+      <ContactUs />
       <div className=" min-h-screen text-typo-600">
         <div className="flex flex-col items-center justify-center py-20 ">
           <h1 className="font-title text-[3rem] font-normal  sm:text-[4rem] md:text-[6rem]">

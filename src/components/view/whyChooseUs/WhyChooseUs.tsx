@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 
 import './whychooseus.css';
@@ -34,14 +33,12 @@ const hireUsItems: HireUsItem[] = [
 
 export default function whyChooseUs() {
   return (
-    <div className="zoom-bg h-[100vh] bg-hero-img-8 bg-contain bg-fixed object-cover lg:bg-cover lg:object-cover">
+    <div className="h-[100vh] bg-hero-img-8 bg-contain bg-fixed object-cover lg:bg-cover lg:object-cover">
       <div className="h-200vh  inset-y-0 left-0 items-center justify-start bg-gradient-to-r from-black/70 via-transparent to-transparent md:h-[140vh] lg:flex lg:h-[100vh]">
         <div className="container flex flex-col space-y-5 py-20 md:py-0 lg:flex-row lg:space-y-0">
           <div className="flex flex-1 flex-col items-center space-y-3 lg:space-y-0">
             <h1 className="self-start text-white/70">WHY CHOOSE US ?</h1>
-            <h1 className="font-title li text-left text-[2.5rem] font-bold leading-tight text-white md:text-[4rem] lg:text-[2.5rem] xl:text-[4rem] 2xl:text-[5.5rem]">
-              Why You Should Hire Us ?
-            </h1>
+            <h1 className="heading">Why You Should Hire Us ?</h1>
             <div className="block h-full w-full items-center justify-center lg:hidden">
               <iframe
                 className="h-[300px] w-full"

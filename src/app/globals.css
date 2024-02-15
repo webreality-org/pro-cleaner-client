@@ -129,6 +129,12 @@ body {
   .tab {
     @apply min-h-full dark:bg-dark-400 bg-light-200 text-light-500 dark:data-[state=active]:bg-dark-300 data-[state=active]:bg-primary-100 data-[state=active]:text-primary-400 !important;
   }
+  .heading {
+    @apply text-left text-[2.5rem] font-bold leading-tight text-white md:text-[4rem] lg:text-[2.5rem] xl:text-[4rem] 2xl:text-[5.5rem];
+  }
+  .sub-heading {
+    @apply text-left text-[1.2rem] font-bold leading-tight text-white md:text-[1.6rem] lg:text-[2rem] xl:text-[2.5rem] 2xl:text-[3rem];
+  }
 }
 
 .no-focus {
