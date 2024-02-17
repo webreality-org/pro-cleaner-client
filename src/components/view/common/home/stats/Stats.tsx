@@ -7,7 +7,7 @@ import StatsCounter from './StatsCounter';
 
 export default function Stats() {
   return (
-    <div className="bg-hero-img-9 flex h-[40vh] bg-cover bg-no-repeat lg:bg-cover lg:object-cover">
+    <div className="flex h-[40vh] bg-hero-img-9 bg-cover bg-no-repeat lg:bg-cover lg:object-cover">
       <div className="inset-y-0 left-0  flex h-full w-screen items-center justify-start bg-black/50">
         <motion.div
           className="hidden items-center justify-center lg:flex"

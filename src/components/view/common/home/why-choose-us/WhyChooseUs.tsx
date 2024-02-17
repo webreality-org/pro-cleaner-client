@@ -33,7 +33,7 @@ const hireUsItems: HireUsItem[] = [
 
 export default function WhyChooseUs() {
   return (
-    <div className="bg-hero-img-8 h-[100vh] bg-contain bg-fixed object-cover lg:bg-cover lg:object-cover">
+    <div className="h-[100vh] bg-hero-img-8 bg-contain bg-fixed object-cover lg:bg-cover lg:object-cover">
       <div className="h-200vh  inset-y-0 left-0 items-center justify-start bg-gradient-to-r from-black/70 via-transparent to-transparent md:h-[140vh] lg:flex lg:h-[100vh]">
         <div className="container flex flex-col space-y-5 py-20 md:py-0 lg:flex-row lg:space-y-0">
           <div className="flex flex-1 flex-col items-center space-y-3 lg:space-y-0">
