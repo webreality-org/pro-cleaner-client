@@ -8,6 +8,7 @@ import QuoteButton from './QuoteButton';
 import ReIconPlus from '@/components/reUi/ReIconPlus';
 import { topHeaderItems } from '@/constants';
 import { cn } from '@/lib/utils';
+import './topnav.css';
 
 const TopNavMenuMobile = () => {
   const [isTopHidden, setIsTopHidden] = useState(false);
@@ -27,25 +28,42 @@ const TopNavMenuMobile = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {topHeaderItems.map((item, i) => (
+            {topHeaderItems.map((item) => (
               <ReIconPlus key={Math.random()} items={item} />
             ))}
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="mt-3 flex justify-between rounded-full bg-primary-200/20 lg:hidden">
-        <motion.button
-          type="button"
-          className="ml-4 "
-          onClick={handleTopHeader}
-          initial={{ scale: 1 }}
-          animate={{ scale: isTopHidden ? 1 : 0.8 }}
-          transition={{ duration: 0.3 }}
-        >
+      <div className="mt-3 flex justify-between rounded-full bg-primary-200/20 p-2 lg:hidden">
+        <motion.button type="button" className="ml-4 " onClick={handleTopHeader}>
           {isTopHidden ? (
-            <ChevronDownCircle className="text-primary-500 hover:fill-primary-300 hover:text-white" />
+            <div className="pl-4">
+              <div className="flex-center contain w-full rounded-full pr-40 text-sm font-extrabold">
+                <input checked={true} type="checkbox" />
+                <svg
+                  viewBox="0 0 512 512"
+                  height="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="chevron-down"
+                >
+                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
+                </svg>
+              </div>
+            </div>
           ) : (
-            <ChevronUpCircle className="text-primary-500 hover:fill-primary-300 hover:text-white" />
+            <div className="pl-4">
+              <div className="flex-center contain w-full rounded-full pr-40 text-sm font-extrabold">
+                <input checked={false} type="checkbox" />
+                <svg
+                  viewBox="0 0 512 512"
+                  height="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="chevron-down"
+                >
+                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
+                </svg>
+              </div>
+            </div>
           )}
         </motion.button>
         <QuoteButton />

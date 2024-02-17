@@ -1,59 +1,19 @@
-'use client';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import ContactUs from '@/components/view/common/home/ContactUs/ContactUs';
+import Banner from '@/components/view/common/home/banner/Banner';
+import Stats from '@/components/view/common/home/stats/Stats';
+import WhyChooseUs from '@/components/view/common/home/why-choose-us/WhyChooseUs';
 
 export default function Home() {
-  const [isInputHidden, setIsInputHidden] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const navbarHeight = 75;
-      const inputElement = document.getElementById('scroll-hide-input');
-
-      if (inputElement) {
-        const inputRect = inputElement.getBoundingClientRect();
-        const isInputAboveNavbar = inputRect.bottom <= navbarHeight;
-
-        setIsInputHidden(isInputAboveNavbar);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <>
-      <div className=" h-[80vh] bg-hero-img-5 bg-cover bg-fixed object-cover lg:bg-hero-img-4">
-        <div className="inset-y-0  left-0 flex h-[80vh] items-center justify-start bg-gradient-to-r from-black/50 via-transparent to-transparent">
-          <div className="mx-auto flex max-w-7xl flex-col items-center py-[9rem]">
-            <h1 className="font-title text-[3rem] font-normal text-white sm:text-[4rem] md:text-[6rem]">
-              Stay neat
-            </h1>
-            <h2 className="font-title text-[2rem] font-normal text-yellow-400 sm:text-[3rem] md:text-[2rem]">
-              <a href="www.facebook.com">Explore Clean Living</a>
-            </h2>
-
-            <p className="w-full text-center  text-[1.3rem] font-normal leading-7 text-white md:w-[31rem] md:text-[1.5rem]">
-              Discover Hotels, Resorts, and many living facilities in your favorite places.
-            </p>
-            <button className="mt-[2.5rem] rounded-lg bg-lime-500 px-4 py-2 text-black">
-              Know more
-            </button>
-            <input
-              id="scroll-hide-input"
-              type="text"
-              className={`transition-all duration-300 ${
-                isInputHidden ? 'pointer-events-none opacity-0' : 'pointer-events-auto opacity-100'
-              }`}
-            />
-          </div>
-        </div>
-      </div>
-
+      {/* banner section */}
+      <Banner />
+      {/* why choose us section */}
+      <WhyChooseUs />
+      {/* stats section */}
+      <Stats />
+      {/* contact us section */}
+      <ContactUs />
       <div className=" min-h-screen text-typo-600">
         <div className="flex flex-col items-center justify-center py-20 ">
           <h1 className="font-title text-[3rem] font-normal  sm:text-[4rem] md:text-[6rem]">
@@ -64,21 +24,7 @@ export default function Home() {
             Discover Hotels, Resorts, and many living facilities in your favorite places.
           </p>
         </div>
-
-        {/* <div className="relative h-[70vh]"> */}
-        {/* <Image
-          src="https://images.unsplash.com/photo-1589405858862-2ac9cbb41321?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="mount"
-          width={700}
-          height={475}
-          sizes="100vw"
-          style={{
-            width: '100%',
-            height: 'auto',
-          }}
-        /> */}
-        {/* </div> */}
-        {/* <div className="h-36 border bg-dark-100  text-white">100</div>
+        <div className="h-36 border bg-dark-100  text-white">100</div>
         <div className="h-36 border bg-dark-200  text-white">200</div>
 
         <div className="h-48 border bg-dark-300  text-white">300</div>
@@ -91,7 +37,7 @@ export default function Home() {
         <div className="h-48 border bg-dark-800  text-white">800</div>
 
         <div className="h-36 border bg-dark-900  text-white">900</div>
-        <div className="h-36 border bg-dark-950  text-white">950</div> */}
+        <div className="h-36 border bg-dark-950  text-white">950</div>
       </div>
     </>
   );

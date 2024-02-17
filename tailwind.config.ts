@@ -126,6 +126,10 @@ module.exports = {
           "url('https://images.squarespace-cdn.com/content/v1/57fbf8c88419c2ee93cbe03e/1507661151953-139YEDGIHRBL9Q05CT2P/Panoramica-Dia%2Cxlarge.1483026236.jpg?format=2500w')",
         'hero-img-4': "url('/assets/images/banner2.webp')",
         'hero-img-5': "url('/assets/images/banner1.webp')",
+        'hero-img-6': "url('/assets/images/bg-6.jpg')",
+        'hero-img-7': "url('/assets/images/bg-7.jpg')",
+        'hero-img-8': "url('/assets/images/whyChooseUs.jpg')",
+        'hero-img-9': "url('/assets/images/statsBg.jpg')",
       },
       screens: {
         500: '500px',
