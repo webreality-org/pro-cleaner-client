@@ -1,19 +1,19 @@
 import { ReactNode } from 'react';
 
-import LeftSidebar from '@/components/view/shared/leftSideBar/page';
-import Navbar from '@/components/view/shared/navbar/Navbar';
-import MobileNavDashboard from '@/components/view/shared/navbars/navbar/MobileNavDashboard';
+import { LeftSideRar } from '@/components/view/shared/leftSideBar/LeftSideBar';
+import DashboardNav from '@/components/view/shared/navbars/dashboard-nav/DashboardNav';
+import { DashboardNavMobile } from '@/components/view/shared/navbars/dashboard-nav/DashboardNavMobile';
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <main className="">
         <div className="flex">
-          <LeftSidebar />
+          <LeftSideRar />
           <section className="flex-1">
             <div className="flex min-h-screen flex-col sm:border-r sm:border-zinc-700">
-              <Navbar />
-              <MobileNavDashboard />
+              <DashboardNav />
+              <DashboardNavMobile />
               <div className="relative flex grow flex-col bg-zinc-100">
                 <div className="px-2 pt-4">{children}</div>
               </div>

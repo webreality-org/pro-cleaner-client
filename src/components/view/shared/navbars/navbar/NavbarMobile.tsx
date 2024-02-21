@@ -1,7 +1,14 @@
-/* eslint-disable import/order */
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 
+import ReTheme from '@/components/re-ui/ReTheme';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -11,17 +18,6 @@ import {
   SheetHeader,
   SheetTrigger,
 } from '@/components/ui/sheet';
-
-import Link from 'next/link';
-
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import NoSSRWrapper from '../ui-utils/NoSSRWrapper';
-import Theme from '../ui-utils/Theme';
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -60,7 +56,7 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ];
 
-export default function ReNavMobile() {
+export default function NavbarMobile() {
   return (
     <div className="flex flex-row items-center justify-between p-4 lg:hidden">
       <div>
@@ -74,9 +70,8 @@ export default function ReNavMobile() {
       </div>
 
       <div className="flex items-center">
-        <NoSSRWrapper>
-          <Theme />
-        </NoSSRWrapper>
+        <ReTheme />
+
         <Sheet>
           <SheetTrigger asChild>
             <span className="flex cursor-pointer items-center justify-center text-center">

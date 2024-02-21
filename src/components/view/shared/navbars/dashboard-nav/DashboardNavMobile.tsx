@@ -1,15 +1,14 @@
 'use client';
 
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import { motion, useCycle } from 'framer-motion';
+import { ChevronDownIcon } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, useCycle } from 'framer-motion';
-import Image from 'next/image';
-import { ChevronDownIcon } from 'lucide-react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
 import { SIDENAV_ITEMS } from '@/constants';
 import { SideNavItem } from '@/types';
-import BreadCrumb from '@/components/view/shared/BreadCrumb/page';
 
 type MenuItemWithSubMenuProps = {
   item: SideNavItem;
@@ -35,17 +34,17 @@ const sidebar = {
   },
 };
 
-const HeaderMobile = () => {
+export const DashboardNavMobile = () => {
   const pathname = usePathname();
-  const path = pathname.toString().toLowerCase().substring(1);
+
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
   const [isOpen, toggleOpen] = useCycle(false, true);
 
   return (
-    <div className="sticky inset-0 z-50 grid grid-rows-2 bg-white md:hidden">
+    <div className="sticky  inset-0 z-50 grid  bg-white md:hidden">
       <div className="">
-        <Image src={'/assets/images/logo.png'} height={100} width={100} alt="logo" />
+        <Image src={'/assets/images/logo-transparent.png'} height={100} width={100} alt="logo" />
         <motion.nav
           initial={false}
           animate={isOpen ? 'open' : 'closed'}
@@ -78,13 +77,9 @@ const HeaderMobile = () => {
           <MenuToggle toggle={toggleOpen} />
         </motion.nav>
       </div>
-
-      <BreadCrumb path={path} />
     </div>
   );
 };
-
-export default HeaderMobile;
 
 const MenuToggle = ({ toggle }: { toggle: any }) => (
   <button onClick={toggle} className="pointer-events-auto absolute right-4 top-[14px] z-30">

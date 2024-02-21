@@ -1,6 +1,5 @@
 import ReNav, { TNavItem } from '@/components/re-ui/ReNav';
-import NoSSRWrapper from '@/components/ui-utils/NoSSRWrapper';
-import Theme from '@/components/ui-utils/Theme';
+import ReTheme from '@/components/re-ui/ReTheme';
 
 const components: { subTitle: string; href: string; description: string }[] = [
   {
@@ -74,9 +73,7 @@ const Navbar = () => {
       loginButton={true}
       additionalElement={
         <>
-          <NoSSRWrapper>
-            <Theme />
-          </NoSSRWrapper>
+          <ReTheme />
         </>
       }
     />
@@ -84,4 +81,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-// max-md:pb-14

@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/menubar';
 import { themes } from '@/constants';
 
-const Theme = () => {
+export const Theme = () => {
   const { theme, setTheme } = useTheme();
 
   const [systemLight, setSystemLight] = useState(false);
@@ -103,4 +103,4 @@ const Theme = () => {
   );
 };
 
-export default Theme;
+// export default <NoSSRWrapper><Theme/></NoSSRWrapper>;

@@ -5,24 +5,23 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import product from '../../../../../public/assets/icons/product.svg';
-import logo from '../.././../../../public/assets/images/logo.svg';
 
-import { Button } from '@/components/ui/button';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { Button } from '@/components/ui/button';
 import { SIDENAV_ITEMS } from '@/constants';
 
-const LeftSidebar = () => {
+export const LeftSideRar = () => {
   const pathname = usePathname();
 
   return (
     <div className="sticky top-1 h-full justify-between space-y-3 border-r bg-white pt-2 max-sm:hidden lg:w-[250px]">
-      <div className="flex-center">
-        <Image src={logo} width="100" height="10" alt="" />
+      <div className="lg:flex-center hidden">
+        <Image src={'/assets/images/logo-transparent.png'} width="100" height="10" alt="" />
       </div>
       <div className="mt-2 flex flex-1 flex-col gap-3 px-2 text-center">
         {/* home */}
@@ -109,5 +108,3 @@ const LeftSidebar = () => {
     </div>
   );
 };
-
-export default LeftSidebar;

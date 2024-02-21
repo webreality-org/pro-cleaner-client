@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import Navbar from '@/components/view/shared/navbars/navbar/Navbar';
-import TopNav from '@/components/view/shared/navbars/TopNav/TopNav';
+import TopNav from '@/components/view/shared/navbars/top-nav/TopNav';
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
