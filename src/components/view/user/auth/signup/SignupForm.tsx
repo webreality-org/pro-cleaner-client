@@ -10,10 +10,10 @@ import { OtpStep } from './OtpStep';
 import { defaultValues, stepOneFields, steps } from './SignupConstants';
 import UserInfoStep from './UserInfoStep';
 
-import { ReButton } from '@/components/reUi/ReButton';
-import { ReGlider } from '@/components/reUi/ReGlider';
-import RePassInput from '@/components/reUi/RePassInput';
-import { ReStepper } from '@/components/reUi/reStepper/ReStepper';
+import { ReButton } from '@/components/re-ui/ReButton';
+import { ReGlider } from '@/components/re-ui/ReGlider';
+import RePassInput from '@/components/re-ui/RePassInput';
+import { ReStepper } from '@/components/re-ui/re-stepper/ReStepper';
 import { Form } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 import { TUserRegisterInput, userRegisterSchema } from '@/lib/validations/userAuth.validations';

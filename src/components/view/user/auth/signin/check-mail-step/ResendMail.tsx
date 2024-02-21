@@ -1,4 +1,4 @@
-import { ReButton } from '@/components/reUi/ReButton';
+import { ReButton } from '@/components/re-ui/ReButton';
 import { setFormStep } from '@/redux/features/auth/signinStepSlices';
 import { useAppDispatch } from '@/redux/hooks';
 

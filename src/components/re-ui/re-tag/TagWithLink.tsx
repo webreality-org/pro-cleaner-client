@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import ReTag from '@/components/reUi/ReTag';
+import ReTag from './ReTag';
 
 interface Props {
   _id: string;

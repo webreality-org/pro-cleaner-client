@@ -7,11 +7,11 @@ import { z } from 'zod';
 
 import SocialLogin from '../SocialLogin';
 
-import { ReButton } from '@/components/reUi/ReButton';
-import { ReCheckBox } from '@/components/reUi/ReCheckBox/ReCheckBox';
-import ReForm from '@/components/reUi/ReForm';
-import ReInput from '@/components/reUi/ReInput';
-import RePassInput from '@/components/reUi/RePassInput';
+import { ReButton } from '@/components/re-ui/ReButton';
+import ReForm from '@/components/re-ui/ReForm';
+import ReInput from '@/components/re-ui/ReInput';
+import RePassInput from '@/components/re-ui/RePassInput';
+import { ReCheckBox } from '@/components/re-ui/re-checkbox/ReCheckBox';
 import useToggle from '@/hooks/useToggle';
 import { userLoginSchema } from '@/lib/validations/userAuth.validations';
 import { setFormStep } from '@/redux/features/auth/signinStepSlices';

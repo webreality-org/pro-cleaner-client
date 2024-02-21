@@ -6,10 +6,10 @@ import { useEffect } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 
-import { ReButton } from '@/components/reUi/ReButton';
-import ReForm from '@/components/reUi/ReForm';
-import ReInput from '@/components/reUi/ReInput';
-import RePassInput from '@/components/reUi/RePassInput';
+import { ReButton } from '@/components/re-ui/ReButton';
+import ReForm from '@/components/re-ui/ReForm';
+import ReInput from '@/components/re-ui/ReInput';
+import RePassInput from '@/components/re-ui/RePassInput';
 import { userLoginSchema } from '@/lib/validations/userAuth.validations';
 import { setFormStep } from '@/redux/features/auth/signinStepSlices';
 import { useAppDispatch } from '@/redux/hooks';

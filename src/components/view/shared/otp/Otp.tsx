@@ -3,11 +3,11 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import Timer from '../../../reUi/ReTimer';
+import Timer from '../../../re-ui/ReTimer';
 
 import OtpBox from './OtpBox';
 
-import { ReButton } from '@/components/reUi/ReButton';
+import { ReButton } from '@/components/re-ui/ReButton';
 import { useToast } from '@/components/ui/use-toast';
 import { counterState, setCounter } from '@/redux/features/optVerify/otpCounterSlice';
 import { setTimerOn } from '@/redux/features/optVerify/otpTimerSlice';

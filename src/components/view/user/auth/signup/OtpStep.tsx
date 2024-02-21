@@ -1,4 +1,4 @@
-import Otp from '../../../common/otp/Otp';
+import Otp from '@/components/view/shared/otp/Otp';
 
 const OtpStep = () => {
   return (

@@ -1,8 +1,8 @@
 import { MailIcon } from 'lucide-react';
 
-import { ReButton } from '@/components/reUi/ReButton';
-import ReForm from '@/components/reUi/ReForm';
-import ReInput from '@/components/reUi/ReInput';
+import { ReButton } from '@/components/re-ui/ReButton';
+import ReForm from '@/components/re-ui/ReForm';
+import ReInput from '@/components/re-ui/ReInput';
 import { incrementFormStep, setFormStep } from '@/redux/features/auth/signinStepSlices';
 import { useAppDispatch } from '@/redux/hooks';
 

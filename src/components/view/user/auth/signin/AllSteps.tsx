@@ -7,8 +7,8 @@ import ForgetPass from './forget-pass-step/ForgetPass';
 import { Signin } from './loginStep/Signin';
 import ResetMail from './reset-mail-step/ResetMail';
 
-import { ReGlider } from '@/components/reUi/ReGlider';
-import { ReStepper } from '@/components/reUi/reStepper/ReStepper';
+import { ReGlider } from '@/components/re-ui/ReGlider';
+import { ReStepper } from '@/components/re-ui/re-stepper/ReStepper';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { userLoginSchema } from '@/lib/validations/userAuth.validations';

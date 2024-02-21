@@ -1,4 +1,4 @@
-import { ReButton } from '@/components/reUi/ReButton';
+import { ReButton } from '@/components/re-ui/ReButton';
 
 const SocialLogin = () => {
   return (

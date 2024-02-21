@@ -1,7 +1,7 @@
-import ReNavMobile from '@/components/reUi/ReNavMobile';
+import ReNavMobile from '@/components/re-ui/ReNavMobile';
+import Footer from '@/components/view/shared/Footer';
 import TopNav from '@/components/view/shared/navbars/TopNav/TopNav';
 import Navbar from '@/components/view/shared/navbars/navbar/Navbar';
-import Footer from '@/components/view/shared/Footer';
 import { TChildrenProps } from '@/types';
 
 const Layout = ({ children }: TChildrenProps) => {

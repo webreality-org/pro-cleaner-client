@@ -1,4 +1,4 @@
-import ReNav, { TNavItem } from '@/components/reUi/ReNav';
+import ReNav, { TNavItem } from '@/components/re-ui/ReNav';
 import NoSSRWrapper from '@/components/ui-utils/NoSSRWrapper';
 import Theme from '@/components/ui-utils/Theme';
 
