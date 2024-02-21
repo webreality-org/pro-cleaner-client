@@ -2,7 +2,7 @@ import { MailIcon } from 'lucide-react';
 
 import { ReButton } from '@/components/re-ui/ReButton';
 import ReForm from '@/components/re-ui/ReForm';
-import ReInput from '@/components/re-ui/ReInput';
+import ReInput from '@/components/re-ui/re-input/ReInput';
 import { incrementFormStep, setFormStep } from '@/redux/features/auth/signinStepSlices';
 import { useAppDispatch } from '@/redux/hooks';
 

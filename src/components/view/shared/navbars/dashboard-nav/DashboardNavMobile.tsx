@@ -42,9 +42,9 @@ export const DashboardNavMobile = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
 
   return (
-    <div className="sticky  inset-0 z-50 grid  bg-white md:hidden">
+    <div className="sticky inset-0 z-50 grid bg-white  p-4 md:hidden">
       <div className="">
-        <Image src={'/assets/images/logo-transparent.png'} height={100} width={100} alt="logo" />
+        <Image src={'/assets/images/logo-transparent.png'} height={75} width={75} alt="logo" />
         <motion.nav
           initial={false}
           animate={isOpen ? 'open' : 'closed'}

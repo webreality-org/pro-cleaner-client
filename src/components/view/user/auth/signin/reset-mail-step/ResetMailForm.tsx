@@ -8,8 +8,8 @@ import { z } from 'zod';
 
 import { ReButton } from '@/components/re-ui/ReButton';
 import ReForm from '@/components/re-ui/ReForm';
-import ReInput from '@/components/re-ui/ReInput';
-import RePassInput from '@/components/re-ui/RePassInput';
+import ReInput from '@/components/re-ui/re-input/ReInput';
+import RePassInput from '@/components/re-ui/re-input/RePassInput';
 import { userLoginSchema } from '@/lib/validations/userAuth.validations';
 import { setFormStep } from '@/redux/features/auth/signinStepSlices';
 import { useAppDispatch } from '@/redux/hooks';

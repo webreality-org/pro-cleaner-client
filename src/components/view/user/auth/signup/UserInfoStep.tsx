@@ -1,6 +1,7 @@
 import { MailIcon, PhoneIncoming, User2Icon } from 'lucide-react';
 
-import ReInput from '@/components/re-ui/ReInput';
+import ReInput from '@/components/re-ui/re-input/ReInput';
+
 const inputFields = [
   {
     name: 'firstName',

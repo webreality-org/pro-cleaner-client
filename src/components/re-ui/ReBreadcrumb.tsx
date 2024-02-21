@@ -12,7 +12,7 @@ type ReBreadcrumbProps = {
 
 export function ReBreadcrumb({ items = [] }: ReBreadcrumbProps) {
   return (
-    <div className="mb-8 w-full">
+    <div className="w-full border-t-2">
       <div className="border-stroke dark:border-dark-3 border-b p-4">
         <ul className="flex">
           <li className="flex items-center">
