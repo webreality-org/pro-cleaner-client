@@ -3,6 +3,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
+import wiper from '../../../../../../public/assets/images/funfactor.png';
+
 import StatsCounter from './StatsCounter';
 
 export default function Stats() {
@@ -14,13 +16,13 @@ export default function Stats() {
           initial={{ x: '40%' }}
           animate={{ x: '-2%' }}
           transition={{
-            duration: 2, // Change the duration to adjust the transition speed
+            duration: 2,
             repeat: Infinity,
             repeatType: 'mirror',
             ease: 'easeInOut',
           }}
         >
-          <Image src={'/assets/images/funfactor.png'} alt="" width={200} height={200} />
+          <Image src={wiper} alt="" width={200} height={200} />
         </motion.div>
         <div className="flex-1">
           <StatsCounter />

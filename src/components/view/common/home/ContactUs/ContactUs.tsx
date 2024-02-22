@@ -5,7 +5,7 @@ import React from 'react';
 
 import image from '../../../../../../public/assets/images/contactUs.png';
 
-import { PrimaryButton } from './Buttons/Buttons';
+import { PrimaryButton } from '@/components/re-ui/raf-forhad/re-button/re-button';
 
 export default function ContactUs() {
   const handleClick = () => {
