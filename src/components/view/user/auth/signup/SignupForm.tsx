@@ -12,7 +12,6 @@ import UserInfoStep from './UserInfoStep';
 
 import { ReButton } from '@/components/re-ui/ReButton';
 import { ReGlider } from '@/components/re-ui/ReGlider';
-import RePassInput from '@/components/re-ui/RePassInput';
 import { ReStepper } from '@/components/re-ui/re-stepper/ReStepper';
 import { Form } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
@@ -24,6 +23,7 @@ import {
   incrementCompletedSteps,
 } from '@/redux/features/shared/StepperSlices';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import RePassInput from '@/components/re-ui/re-input/RePassInput';
 
 const SignupForm = () => {
   // navigation

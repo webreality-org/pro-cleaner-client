@@ -99,7 +99,7 @@ const RePassInput = ({
         control={control}
         name={name}
         render={({ field }) => (
-          <FormItem className="relative">
+          <FormItem className="relative flex flex-col px-5 text-left">
             <FormLabel>{name}</FormLabel>
             <FormControl>
               <div className="flex-center focus-visible:ring-2focus-visible:ring-offset-2 gap-2 rounded border border-gray-400  px-2">

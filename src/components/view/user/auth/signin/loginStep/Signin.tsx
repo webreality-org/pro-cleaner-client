@@ -4,7 +4,7 @@ import { CardContent, CardDescription, CardHeader, CardTitle } from '@/component
 
 export const Signin = () => {
   return (
-    <div className="">
+    <div className="overflow-hidden">
       <CardHeader className="text-center">
         <CardTitle>Sign In</CardTitle>
         <CardDescription>Start the journey with us today.</CardDescription>

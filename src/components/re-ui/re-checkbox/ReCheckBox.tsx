@@ -46,7 +46,7 @@ export const ReCheckBox = ({ id, handleCheckboxChange, isChecked, label }: TChec
               strokeWidth="25"
             ></path>
           </svg>
-          <span className="label-text ml-2">{label}</span>
+          <span className="label-text ml-2 text-xs md:text-sm">{label}</span>
         </label>
       </div>
     </div>

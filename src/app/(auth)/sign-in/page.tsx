@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const SigninPage = () => {
   return (
-    <div>
+    <div className="flex items-center justify-center px-4">
       <AllSteps />
     </div>
   );

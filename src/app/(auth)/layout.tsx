@@ -8,7 +8,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <div>
       <TopNav />
       <Navbar />
-      <main className="flex min-h-[80vh] items-center justify-center bg-white">{children}</main>
+      <main className="flex min-h-[80vh] w-full items-center justify-center overflow-hidden bg-white">
+        {children}
+      </main>
     </div>
   );
 };

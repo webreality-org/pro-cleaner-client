@@ -41,6 +41,19 @@ export const topHeaderItems = [
     ],
   },
 ];
+// icons.ts
+
+export interface IconItem {
+  name: string;
+  src: string;
+}
+
+export const items: IconItem[] = [
+  { name: 'google', src: '/assets/social-icons/google.svg' },
+  { name: 'facebook', src: '/assets/social-icons/facebook.svg' },
+  { name: 'linkedIn', src: '/assets/social-icons/linkedIn.svg' },
+  { name: 'github', src: '/assets/social-icons/github.svg' },
+];
 
 export const BADGE_CRITERIA = {
   QUESTION_COUNT: {
@@ -77,7 +90,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   },
   {
     title: 'Product',
-    icon: '/public/assets/icons/star.svg',
+    icon: '/assets/icons/star.svg',
     submenu: true,
     subMenuItems: [
       { title: 'Child-one', path: '/child-one', icon: '/assets/icons/star.svg' },
@@ -102,6 +115,6 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   {
     title: 'Help',
     path: '/help',
-    icon: '../../public/assets/icons/home.svg',
+    icon: '../../assets/icons/home.svg',
   },
 ];

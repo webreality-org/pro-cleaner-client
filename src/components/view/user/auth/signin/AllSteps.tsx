@@ -42,7 +42,7 @@ const AllSteps = () => {
 
   return (
     <>
-      <Card className="min-h-[600px] w-[600px] overflow-x-hidden">
+      <Card className="flex flex-col items-center justify-center overflow-x-hidden border">
         <div
           className={cn('pt-10', {
             hidden: formStep === 0,

@@ -35,7 +35,9 @@ const Step1 = () => {
     dispatch(setFormStep(1));
   };
 
-  const onSubmit: SubmitHandler<TInputs> = async (data) => {};
+  const onSubmit: SubmitHandler<TInputs> = async (data) => {
+    console.log(data);
+  };
   return (
     <>
       <ReForm<DefaultValues>
@@ -52,7 +54,7 @@ const Step1 = () => {
           prefix={<MailIcon />}
         />
         <RePassInput />
-        <div className="flex-between">
+        <div className="flex items-center justify-between px-4">
           <div className="">
             <ReCheckBox
               id="remember-check"

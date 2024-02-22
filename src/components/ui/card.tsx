@@ -49,7 +49,11 @@ CardDescription.displayName = 'CardDescription';
 
 const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, children, ...props }, ref) => (
-    <div ref={ref} className={cn('p-6 pt-0', className)} {...props}>
+    <div
+      ref={ref}
+      className={cn('flex flex-col justify-center items-center overflow-hidden', className)}
+      {...props}
+    >
       {children}
     </div>
   )
@@ -58,7 +62,11 @@ CardContent.displayName = 'CardContent';
 
 const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, children, ...props }, ref) => (
-    <div ref={ref} className={cn('flex items-center p-6 pt-0', className)} {...props}>
+    <div
+      ref={ref}
+      className={cn('flex flex-col justify-center items-center overflow-hidden', className)}
+      {...props}
+    >
       {children}
     </div>
   )
