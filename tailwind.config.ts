@@ -40,6 +40,13 @@ module.exports = {
           800: '#232f3e',
           900: '#17212B',
           950: '#16191f',
+          // telegram
+        
+          920: '#2B5278',
+          930: '#0E1621',
+          960: '#242F3D',
+
+          940: '#192C3D',
         },
         light: {
           100: '#FFFFFF',
@@ -59,7 +66,6 @@ module.exports = {
           600: '#d5dbdb',
           700: '#44b9d5',
           800: '#3fcfc5',
-
         },
 
         // 'accent-blue': '#b1eef0',
@@ -120,8 +126,12 @@ module.exports = {
           "url('https://images.squarespace-cdn.com/content/v1/57fbf8c88419c2ee93cbe03e/1507661151953-139YEDGIHRBL9Q05CT2P/Panoramica-Dia%2Cxlarge.1483026236.jpg?format=2500w')",
         'hero-img-4': "url('/assets/images/banner2.webp')",
         'hero-img-5': "url('/assets/images/banner1.webp')",
+        'hero-img-6': "url('/assets/images/bg-6.jpg')",
+        'hero-img-7': "url('/assets/images/bg-7.jpg')",
+        'hero-img-8': "url('/assets/images/whyChooseUs.jpg')",
+        'hero-img-9': "url('/assets/images/statsBg.jpg')",
       },
-       screens: {
+      screens: {
         500: '500px',
         400: '400px',
         300: '300px',

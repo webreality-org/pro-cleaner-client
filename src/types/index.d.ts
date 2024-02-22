@@ -1,15 +1,19 @@
-import { ReactNode } from 'react';
+import { JSXElementConstructor, ReactNode } from 'react';
 
 import { BADGE_CRITERIA } from '@/constants';
 
-export interface SearchParamsProps {
-  searchParams: { [key: string]: string | undefined };
-}
+export type Prettify<T> = {
+  [K in keyof T]: T[K];
+};
 
-export interface URLProps {
+export type TSearchParamsProps = {
+  searchParams?: { [key: string]: string | undefined };
+};
+
+export type TURLProps = {
   params: { id: string };
   searchParams: { [key: string]: string | undefined };
-}
+};
 
 export interface BadgeCounts {
   GOLD: number;
@@ -41,6 +45,14 @@ export type TGenericErrorResponse = {
   statusCode: number;
   errorName: string;
   errorMessages: TGenericErrorMessage[];
+};
+
+export type SideNavItem = {
+  title: string;
+  path?: string;
+  icon?: JSXElementConstructor.Element;
+  submenu?: boolean;
+  subMenuItems?: SideNavItem[];
 };
 
 // ============================

@@ -1,3 +1,5 @@
+import { SideNavItem } from '@/types';
+
 export const themes = [
   { value: 'light', label: 'Light', icon: '/assets/icons/sun.svg' },
   { value: 'dark', label: 'Dark', icon: '/assets/icons/moon.svg' },
@@ -67,3 +69,39 @@ export const BADGE_CRITERIA = {
     GOLD: 100000,
   },
 };
+export const SIDENAV_ITEMS: SideNavItem[] = [
+  {
+    title: 'Home',
+    path: '/dashboard-home',
+    icon: '/assets/icons/star.svg',
+  },
+  {
+    title: 'Product',
+    icon: '/public/assets/icons/star.svg',
+    submenu: true,
+    subMenuItems: [
+      { title: 'Child-one', path: '/child-one', icon: '/assets/icons/star.svg' },
+      { title: 'Child-two', path: '/child-two', icon: '/assets/icons/star.svg' },
+    ],
+  },
+  {
+    title: 'Messages',
+    path: '/messages',
+    icon: '/assets/icons/home.svg',
+  },
+  {
+    title: 'Settings',
+    path: '/settings',
+    icon: '/assets/icons/home.svg',
+    submenu: true,
+    subMenuItems: [
+      { title: 'Account', path: '/settings/account' },
+      { title: 'Privacy', path: '/settings/privacy' },
+    ],
+  },
+  {
+    title: 'Help',
+    path: '/help',
+    icon: '../../public/assets/icons/home.svg',
+  },
+];

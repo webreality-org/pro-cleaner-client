@@ -25,10 +25,10 @@ export const metadata: Metadata = {
   description:
     'A community-driven platform for cleaning services. Find the best cleaning services in your area.',
   icons: {
-    icon: '/assets/images/site-logo.svg',
+    icon: './favicon.ico',
   },
 };
-
+//
 export default function RootLayout({ children }: TChildrenProps) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -40,4 +40,4 @@ export default function RootLayout({ children }: TChildrenProps) {
     </html>
   );
 }
-
+// Path: src/pages/_app.tsx
