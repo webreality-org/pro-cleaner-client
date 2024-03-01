@@ -38,7 +38,7 @@ const TopNavMenuMobile = () => {
           {isTopHidden ? (
             <div className="pl-4">
               <div className="flex-center contain w-full rounded-full pr-40 text-sm font-extrabold">
-                <input checked={true} type="checkbox" />
+                <input readOnly checked={true} type="checkbox" />
                 <svg
                   viewBox="0 0 512 512"
                   height="1em"
@@ -52,7 +52,7 @@ const TopNavMenuMobile = () => {
           ) : (
             <div className="pl-4">
               <div className="flex-center contain w-full rounded-full pr-40 text-sm font-extrabold">
-                <input checked={false} type="checkbox" />
+                <input readOnly checked={false} type="checkbox" />
                 <svg
                   viewBox="0 0 512 512"
                   height="1em"

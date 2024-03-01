@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import SignupForm from '@/components/view/user/auth/signup/SignupForm';
@@ -16,7 +17,9 @@ const SignupPage = () => {
         <CardDescription>Start the journey with us today.</CardDescription>
       </CardHeader>
       <CardContent>
-        <SignupForm />
+        <Suspense>
+          <SignupForm />
+        </Suspense>
       </CardContent>
     </Card>
   );

@@ -39,13 +39,13 @@ export default function WhyChooseUs() {
           <div className="flex flex-1 flex-col items-center space-y-3 lg:space-y-0">
             <h1 className="self-start text-white/70">WHY CHOOSE US ?</h1>
             <h1 className="heading">Why You Should Hire Us ?</h1>
-            <div className="block h-full w-full items-center justify-center lg:hidden">
+            {/* <div className="block h-full w-full items-center justify-center lg:hidden">
               <iframe
                 className="h-[300px] w-full"
                 title="cleaning"
                 src="https://www.youtube.com/embed/zDknxGb00I4/?controls=1"
               ></iframe>
-            </div>
+            </div> */}
             <div className="grid w-full grid-cols-1 place-items-center gap-5 md:grid-cols-2 lg:place-items-start">
               {hireUsItems.map((item, index) => (
                 <div
@@ -65,13 +65,13 @@ export default function WhyChooseUs() {
               ))}
             </div>
           </div>
-          <div className="hidden items-center justify-center lg:flex">
+          {/* <div className="hidden items-center justify-center lg:flex">
             <iframe
               className="h-[400px] lg:w-[350px] xl:w-[500px] 2xl:w-[600px]"
               title="cleaning"
               src="https://www.youtube.com/embed/zDknxGb00I4/?controls=1"
             ></iframe>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 import AllSteps from '@/components/view/user/auth/signin/AllSteps';
 
@@ -10,7 +11,9 @@ export const metadata: Metadata = {
 const SigninPage = () => {
   return (
     <div>
-      <AllSteps />
+      <Suspense>
+        <AllSteps />
+      </Suspense>
     </div>
   );
 };
